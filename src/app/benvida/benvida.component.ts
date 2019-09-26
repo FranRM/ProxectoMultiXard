@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./benvida.component.sass']
 })
 export class BenvidaComponent implements OnInit {
-
+  benvida = 'Benvido a MultiXard';
   constructor() { }
 
   ngOnInit() {
