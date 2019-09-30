@@ -8,11 +8,11 @@ import {ActivatedRoute} from'@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
+
 export class AppComponent {
   private location:Location;
   title = 'MultiXardApp';
   volverBenvida(): void {
     this.location.go('/benvida');
   }
-  
 }
