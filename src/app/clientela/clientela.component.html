@@ -1,1 +1,15 @@
 <h1>Zona de Clientes:</h1>
+<form *ngIf="!logeado">
+    <input [(ngModel)]="loginUserData.user" name="caixaUsuario" type="text" placeholder="Usuario" />
+    <br />
+    <input [(ngModel)]="loginUserData.pass" name="caixaContrasinal" type="password" placeholder="Constrasinal" />
+    <br />
+    <button (click)="logear()">Entrar</button>
+</form>
+<form *ngIf="logeado">
+    <input [(ngModel)]="regUserData.user" name="caixaUsuario" type="text" placeholder="Usuario" />
+    <br />
+    <input [(ngModel)]="regUserData.pass" name="caixaContrasinal" type="password" placeholder="Constrasinal" />
+    <br />
+    <button (click)="registrar()">Rexistrarse</button>
+</form>
