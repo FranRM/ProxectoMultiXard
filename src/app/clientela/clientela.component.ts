@@ -7,27 +7,27 @@ import {AutentificacionService} from '../servicios/autentificacion.service'
   styleUrls: ['./clientela.component.sass']
 })
 export class ClientelaComponent implements OnInit {
-  logeado=false;
+  logeado=true;
   loginUserData = {}
   regUserData = {}
   constructor(private autentificacion:AutentificacionService) { }
 
   ngOnInit() {
   }
-  mudarLogeado(boolean):void{
-    this.logeado=boolean;
+  mudarLogeado(){
+    this.logeado=!this.logeado;
   }
   logear(){
-    console.log(this.loginUserData)
+    
     this.autentificacion.logearUsuario(this.loginUserData)
       .subscribe(
         res=> console.log(res),
         err=> console.log(err)
       )
+    console.log("Logeandose cos seguintes datos: " + this.loginUserData)
   }
   registrar() {
-    console.log(this.loginUserData)
-    this.autentificacion.registarUsuario(this.loginUserData)
+    this.autentificacion.registarUsuario(this.regUserData)
       .subscribe(
         res => console.log(res),
         err => console.log(err)
