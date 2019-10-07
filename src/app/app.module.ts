@@ -9,6 +9,7 @@ import { ProletariadoComponent } from './proletariado/proletariado.component';
 import { FuncionariadoComponent } from './funcionariado/funcionariado.component';
 import { BenvidaComponent } from './benvida/benvida.component';
 import {AutentificacionService} from './servicios/autentificacion.service';
+import { RexistroComponent } from './rexistro/rexistro.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {AutentificacionService} from './servicios/autentificacion.service';
     ClientelaComponent,
     ProletariadoComponent,
     FuncionariadoComponent,
-    BenvidaComponent
+    BenvidaComponent,
+    RexistroComponent
   ],
   imports: [
     BrowserModule,

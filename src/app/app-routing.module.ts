@@ -4,6 +4,7 @@ import { BenvidaComponent } from './benvida/benvida.component';
 import { ClientelaComponent } from './clientela/clientela.component';
 import { FuncionariadoComponent } from './funcionariado/funcionariado.component';
 import { ProletariadoComponent } from './proletariado/proletariado.component';
+import { RexistroComponent } from './rexistro/rexistro.component';
 
 
 const routes: Routes = [
@@ -11,7 +12,8 @@ const routes: Routes = [
   { path: 'benvida', component: BenvidaComponent },
   { path: 'clientela', component: ClientelaComponent },
   { path: 'funcionariado', component: FuncionariadoComponent },
-  { path: 'proletariado', component: ProletariadoComponent }
+  { path: 'proletariado', component: ProletariadoComponent },
+  { path: 'rexistro', component: RexistroComponent }
 ];
 
 @NgModule({
