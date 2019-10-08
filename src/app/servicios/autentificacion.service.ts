@@ -5,13 +5,17 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class AutentificacionService {
-  private urlLogeo='http://localhost:3000/api/login'
+  private urlLogeoUser='http://localhost:3000/api/loginUser'
+  private urlLogeoAdmin = 'http://localhost:3000/api/loginAdmin'
   private urlRexistro = 'http://localhost:3000/api/register'
   constructor(private http:HttpClient) { }
   logearUsuario(user){
-      return this.http.post<any>(this.urlLogeo,user)
+      return this.http.post<any>(this.urlLogeoUser,user)
   }
-  registarUsuario(user){
+  logearAdministrador(admin) {
+    return this.http.post<any>(this.urlLogeoAdmin, admin)
+  }
+  registrarUsuario(user){
     return this.http.post<any>(this.urlRexistro,user)
   }
 }

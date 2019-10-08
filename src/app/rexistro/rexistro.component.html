@@ -1,8 +1,12 @@
 <p>Complete os campos requeridos para proceder ó rexistro.</p>
-<form>
+<form *ngIf="!datosIntroducidos">
+    <input [(ngModel)]="regUserData.nome" name="caixaNome" type="text" placeholder="Nome" />
+    <br />
+    <input [(ngModel)]="regUserData.apelidos" name="caixaApelidos" type="text" placeholder="Apelidos" />
+    <br />
     <input [(ngModel)]="regUserData.user" name="caixaUsuario" type="text" placeholder="Usuario" />
     <br />
-    <input [(ngModel)]="regUserData.pass" name="caixaContrasinal" type="password" placeholder="Constrasinal" />
+    <input [(ngModel)]="regUserData.pass" name="caixaContrasinal" type="text" placeholder="Constrasinal" />
     <br />
     <button (click)="rexistrar()">Rexistrarse</button>
 </form>

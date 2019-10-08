@@ -9,11 +9,13 @@ import { AutentificacionService } from '../servicios/autentificacion.service'
 export class RexistroComponent implements OnInit {
 
   constructor(private autentificacion: AutentificacionService) { }
-  regUserData = {}
+  regUserData = {};
+  datosIntroducidos=false;
   ngOnInit() {
   }
   rexistrar() {
-    this.autentificacion.registarUsuario(this.regUserData)
+
+    this.autentificacion.registrarUsuario(this.regUserData)
       .subscribe(
         res => console.log(res),
         err => console.log(err)

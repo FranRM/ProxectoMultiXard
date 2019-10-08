@@ -1,1 +1,10 @@
 <h1>Zona de Administración:</h1>
+<h2>Acceso:</h2>
+<form *ngIf="!logueado">
+    <input [(ngModel)]="loginAdminData.usuario" type="text" placeholder="Usuario" />
+    <br />
+    <input [(ngModel)]="loginAdminData.pass" type="password" placeholder="Constrasinal" />
+    <br />
+    <button (click)="logearAdministrador()">Entrar</button>
+</form>
+<button *ngIf="logeado" (click)="pecharSesion()">Pechar sesión</button>
