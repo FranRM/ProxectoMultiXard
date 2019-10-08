@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AutentificacionService } from 'src/app/servicios/autentificacion.service';
-import { Usuario } from 'src/app/clases/Usuario';
 
 @Component({
   selector: 'app-funcionariado',
