@@ -19,7 +19,7 @@ export class FuncionariadoComponent implements OnInit {
     this.autentificacion.logearAdministrador(this.loginAdminData)
       .subscribe(
         res => console.log(res),
-        err => console.log(err),
+        err => console.log(err)
       )
     console.log("Logeandose cos seguintes datos: " + this.loginAdminData)
     this.logeado=true
