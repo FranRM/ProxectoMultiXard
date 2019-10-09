@@ -14,6 +14,7 @@ export class AutentificacionService {
   }
   logearAdministrador(admin) {
     return this.http.post<any>(this.urlLogeoAdmin, admin)
+    //Detectado un bug que non permite logearse a os admins ata que un cliente se loguea.
   }
   registrarUsuario(user){
     return this.http.post<any>(this.urlRexistro,user)
