@@ -16,17 +16,18 @@ export class ClientelaComponent implements OnInit {
   }
   pecharSesion(){
     this.logeado=false;
-    this.loginUserData=null
   }
   
   logearCliente(){
     this.autentificacion.logearUsuario(this.loginUserData)
       .subscribe(
-        res=> console.log(res),
+        res => {
+          console.log(res)
+          this.logeado = true
+        },
         err => console.log(err)
       )
     console.log("Logeandose cos seguintes datos: " + this.loginUserData)
-    this.logeado=true;
   }
 
 }

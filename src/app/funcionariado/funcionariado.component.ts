@@ -14,17 +14,19 @@ export class FuncionariadoComponent implements OnInit {
 
   ngOnInit() {
   }
+
   logearAdministrador() {
     this.autentificacion.logearAdministrador(this.loginAdminData)
       .subscribe(
-        res => console.log(res),
+        res => {
+          console.log(res)
+          this.logeado = true
+        },
         err => console.log(err)
       )
     console.log("Logeandose cos seguintes datos: " + this.loginAdminData)
-    this.logeado=true
   }
   pecharSesion() {
     this.logeado = false;
-    this.loginAdminData = null
   }
 }

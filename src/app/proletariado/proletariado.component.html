@@ -1,1 +1,11 @@
-<h1>Zona de Operarios:</h1>
+
+<h1>Zona de Traballadores:</h1>
+<h2>Acceso:</h2>
+<form *ngIf="!logeado">
+    <input [(ngModel)]="loginTrabData.user" name="caixaUsuarioT" type="text" placeholder="Usuario" />
+    <br />
+    <input [(ngModel)]="loginTrabData.pass" name="caixaContrasinalT" type="password" placeholder="Constrasinal" />
+    <br />
+    <button (click)="logearTraballador()">Entrar</button>
+</form>
+<button *ngIf="logeado" (click)="pecharSesion()">Pechar sesión</button>

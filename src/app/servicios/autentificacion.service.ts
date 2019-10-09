@@ -7,16 +7,25 @@ import {HttpClient} from '@angular/common/http';
 export class AutentificacionService {
   private urlLogeoUser='http://localhost:3000/api/loginUser'
   private urlLogeoAdmin = 'http://localhost:3000/api/loginAdmin'
+  private urlLogeoTrab = 'http://localhost:3000/api/loginTrab'
   private urlRexistro = 'http://localhost:3000/api/register'
   constructor(private http:HttpClient) { }
   logearUsuario(user){
-      return this.http.post<any>(this.urlLogeoUser,user)
+      return this.http.post<any>(this.urlLogeoUser, user)
   }
   logearAdministrador(admin) {
     return this.http.post<any>(this.urlLogeoAdmin, admin)
-    //Detectado un bug que non permite logearse a os admins ata que un cliente se loguea.
+  }
+  logearTraballador(trab) {
+    return this.http.post<any>(this.urlLogeoTrab, trab)
   }
   registrarUsuario(user){
-    return this.http.post<any>(this.urlRexistro,user)
+    return this.http.post<any>(this.urlRexistro, user)
+  }
+  loggedIn(){
+    return !!localStorage.getItem('token')
+  }
+  getToken(){
+    return localStorage.getItem('token')
   }
 }
