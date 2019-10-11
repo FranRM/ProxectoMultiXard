@@ -9,7 +9,7 @@ import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo:'/benvida', pathMatch: 'full'},
+  { path: '', redirectTo: '/benvida', pathMatch: 'full'},
   { path: 'benvida', component: BenvidaComponent },
   { path: 'login', component: LoginComponent },
   { path: 'clientela', component: ClientelaComponent },

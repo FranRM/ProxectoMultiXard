@@ -7,10 +7,10 @@ import { AutentificacionService } from 'src/app/servicios/autentificacion.servic
   styleUrls: ['./funcionariado.component.sass']
 })
 export class FuncionariadoComponent implements OnInit {
-  logeado=false;
-  loginAdminData = {}
+  logeado = false;
+  loginAdminData = {};
 
-  constructor(private autentificacion:AutentificacionService) { }
+  constructor(private autentificacion: AutentificacionService) { }
 
   ngOnInit() {
   }
@@ -19,12 +19,12 @@ export class FuncionariadoComponent implements OnInit {
     this.autentificacion.logearAdministrador(this.loginAdminData)
       .subscribe(
         res => {
-          console.log(res)
-          this.logeado = true
+          console.log(res);
+          this.logeado = true;
         },
         err => console.log(err)
-      )
-    console.log("Logeandose cos seguintes datos: " + this.loginAdminData)
+      );
+    console.log('Logeandose cos seguintes datos: ' + this.loginAdminData);
   }
   pecharSesion() {
     this.logeado = false;
