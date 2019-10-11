@@ -19,12 +19,14 @@
     "@angular/platform-browser": "~8.2.4",
     "@angular/platform-browser-dynamic": "~8.2.4",
     "@angular/router": "~8.2.4",
+    "angular-tslint-rules": "^1.20.1",
     "express": "^4.17.1",
     "mongodb": "^3.3.2",
     "mongoose": "^5.7.3",
     "primeng": "^8.0.3",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
+    "tslint": "^5.20.0",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
@@ -45,7 +47,6 @@
     "karma-jasmine-html-reporter": "^1.4.0",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
-    "tslint": "~5.15.0",
     "typescript": "~3.5.3"
   }
 }

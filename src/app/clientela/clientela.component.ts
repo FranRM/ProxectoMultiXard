@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AutentificacionService} from '../servicios/autentificacion.service'
+import {AutentificacionService} from '../servicios/autentificacion.service';
 
 @Component({
   selector: 'app-clientela',
@@ -7,27 +7,26 @@ import {AutentificacionService} from '../servicios/autentificacion.service'
   styleUrls: ['./clientela.component.sass']
 })
 export class ClientelaComponent implements OnInit {
-  logeado=false;
-  loginUserData = {}
-  
-  constructor(private autentificacion:AutentificacionService) { }
+  logeado = false;
+  loginUserData = {};
+  constructor(private autentificacion: AutentificacionService) { }
 
   ngOnInit() {
   }
-  pecharSesion(){
-    this.logeado=false;
+  pecharSesion() {
+    this.logeado = false;
   }
-  
-  logearCliente(){
+  logearCliente() {
     this.autentificacion.logearUsuario(this.loginUserData)
       .subscribe(
         res => {
-          console.log(res)
-          this.logeado = true
+          console.log(res);
+          localStorage.setItem('token', res.token);
+          this.logeado = true;
+          console.log('Logeandose cos seguintes datos: ' + this.loginUserData);
         },
         err => console.log(err)
-      )
-    console.log("Logeandose cos seguintes datos: " + this.loginUserData)
+      );
   }
 
 }

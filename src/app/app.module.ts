@@ -10,7 +10,8 @@ import { FuncionariadoComponent } from './funcionariado/funcionariado.component'
 import { BenvidaComponent } from './benvida/benvida.component'
 import {AutentificacionService} from './servicios/autentificacion.service'
 import { RexistroComponent } from './rexistro/rexistro.component'
-import { InterceptorTokenService } from '../app/servicios/interceptor-token.service'
+import { InterceptorTokenService } from '../app/servicios/interceptor-token.service';
+import { LoginComponent } from './login/login.component'
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { InterceptorTokenService } from '../app/servicios/interceptor-token.serv
     ProletariadoComponent,
     FuncionariadoComponent,
     BenvidaComponent,
-    RexistroComponent
+    RexistroComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,9 @@ import { InterceptorTokenService } from '../app/servicios/interceptor-token.serv
      multi: true
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas:[
+  ]
 })
 
 
