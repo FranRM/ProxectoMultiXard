@@ -1,10 +1,10 @@
 <h1>Zona de Clientes:</h1>
 <h2>Acceso:</h2>
-<form *ngIf="!logeado">
-    <input [(ngModel)]="loginUserData.user" name="caixaUsuarioL" type="text" placeholder="Usuario" />
+<form *ngIf="!appComp.isLogeado()">
+    <input [(ngModel)]="isir" name="caixaUsuarioL" type="text" placeholder="Usuario" />
     <br />
-    <input [(ngModel)]="loginUserData.pass" name="caixaContrasinalL" type="password" placeholder="Constrasinal" />
+    <input [(ngModel)]="contrasinal" name="caixaContrasinalL" type="password" placeholder="Constrasinal" />
     <br />
     <button (click)="logearCliente()">Entrar</button>
 </form>
-<button *ngIf="logeado" (click)="pecharSesion()">Pechar sesión</button>
+<button *ngIf="appComp.isLogeado()" (click)="pecharSesion()">Pechar sesión</button>

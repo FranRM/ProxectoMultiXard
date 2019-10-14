@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { Location } from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
+import {AutentificacionService} from '../app/servicios/autentificacion.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,12 @@ import {ActivatedRoute} from '@angular/router';
 })
 
 export class AppComponent {
-  logeado = false;
+  // TODO - Engadir minimenú para o logout ensinando datos do user logueado.
+  // TODO - Usar Angular Material para os HTML.
+  // TODO - Implementar os roles para a DB, e acabar de centralizar os 3 logins.
+
+  constructor(private autenticador: AutentificacionService) {}
+  public logeado = false;
   private location: Location;
   title = 'MultiXardApp';
   volverBenvida(): void {
@@ -18,8 +24,12 @@ export class AppComponent {
   }
   isLogeado(): boolean {
     return this.logeado;
-  }
+    }
   setLogeado(valor: boolean) {
-    this.logeado = valor;
+  this.logeado = valor;
+  }
+  logout() {
+    this.logeado = false;
+    this.autenticador.logoutUser();
   }
 }

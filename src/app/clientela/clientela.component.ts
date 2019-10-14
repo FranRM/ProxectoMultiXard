@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {AutentificacionService} from '../servicios/autentificacion.service';
+import { AutentificacionService } from '../servicios/autentificacion.service';
+import { AppComponent } from '../app.component';
+import { Usuario } from '../clases/Usuario';
 
 @Component({
   selector: 'app-clientela',
@@ -7,22 +9,26 @@ import {AutentificacionService} from '../servicios/autentificacion.service';
   styleUrls: ['./clientela.component.sass']
 })
 export class ClientelaComponent implements OnInit {
-  logeado = false;
-  loginUserData = {};
-  constructor(private autentificacion: AutentificacionService) { }
+  loginUserData;
+  contrasinal;
+  isir;
+  user = new Usuario(this.isir, this.contrasinal);
+
+  constructor(private autentificacion: AutentificacionService, private appComp: AppComponent) { }
 
   ngOnInit() {
   }
   pecharSesion() {
-    this.logeado = false;
+    this.appComp.logout();
   }
   logearCliente() {
+    this.loginUserData = { user: this.isir, pass: this.contrasinal };
     this.autentificacion.logearUsuario(this.loginUserData)
       .subscribe(
         res => {
           console.log(res);
           localStorage.setItem('token', res.token);
-          this.logeado = true;
+          this.appComp.setLogeado(true);
           console.log('Logeandose cos seguintes datos: ' + this.loginUserData);
         },
         err => console.log(err)
