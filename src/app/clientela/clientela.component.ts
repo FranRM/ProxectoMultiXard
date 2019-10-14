@@ -14,6 +14,7 @@ export class ClientelaComponent implements OnInit {
   isir;
   user = new Usuario(this.isir, this.contrasinal);
 
+  // TODO - Usar Angular Material para os HTML.
   constructor(private autentificacion: AutentificacionService, private appComp: AppComponent) { }
 
   ngOnInit() {

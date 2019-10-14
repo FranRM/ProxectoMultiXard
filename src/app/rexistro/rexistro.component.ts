@@ -11,6 +11,7 @@ export class RexistroComponent implements OnInit {
   constructor(private autentificacion: AutentificacionService) { }
   regUserData = {};
   datosIntroducidos = false;
+  // TODO - Usar Angular Material para os HTML.
   ngOnInit() {
   }
   rexistrar() {

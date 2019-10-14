@@ -12,8 +12,7 @@ import {AutentificacionService} from '../app/servicios/autentificacion.service';
 
 export class AppComponent {
   // TODO - Engadir minimenú para o logout ensinando datos do user logueado.
-  // TODO - Usar Angular Material para os HTML.
-  // TODO - Implementar os roles para a DB, e acabar de centralizar os 3 logins.
+  // TODO - Internacionalizar a app.
 
   constructor(private autenticador: AutentificacionService) {}
   public logeado = false;

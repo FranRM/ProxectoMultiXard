@@ -10,6 +10,7 @@ export class FuncionariadoComponent implements OnInit {
   logeado = false;
   loginAdminData = {};
 
+  // TODO - Usar Angular Material para os HTML.
   constructor(private autentificacion: AutentificacionService) { }
 
   ngOnInit() {

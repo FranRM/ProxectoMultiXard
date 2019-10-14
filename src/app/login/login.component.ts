@@ -10,6 +10,7 @@ import { AppComponent } from '../app.component';
 export class LoginComponent implements OnInit {
 
   loginData = {};
+  // TODO - Usar Angular Material para os HTML.
   constructor(private autentificacion: AutentificacionService, private ac: AppComponent) { }
   ngOnInit() {
   }

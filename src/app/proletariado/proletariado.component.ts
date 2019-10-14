@@ -12,6 +12,7 @@ export class ProletariadoComponent implements OnInit {
   logeado = false;
   loginTrabData = {};
 
+  // TODO - Usar Angular Material para os HTML.
   constructor(private autentificacion: AutentificacionService, private appComp: AppComponent) { }
 
   ngOnInit() {

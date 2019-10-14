@@ -10,6 +10,7 @@ export class AutentificacionService {
   private urlLogeoAdmin = 'http://localhost:3000/api/loginAdmin';
   private urlLogeoTrab = 'http://localhost:3000/api/loginTrab';
   private urlRexistro = 'http://localhost:3000/api/register';
+  // TODO - Implementar os roles para a DB, e acabar de centralizar os 3 logins.
   constructor(private http: HttpClient, private router: Router) { }
   logearUsuario(user) {
       return this.http.post<any>(this.urlLogeoUser, user);
