@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Usuario } from '../clases/Usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +16,13 @@ export class AutentificacionService {
   logearUsuario(user) {
       return this.http.post<any>(this.urlLogeoUser, user);
   }
-  logearAdministrador(admin) {
+  logearAdministrador(admin: Usuario) {
     return this.http.post<any>(this.urlLogeoAdmin, admin);
   }
-  logearTraballador(trab) {
+  logearTraballador(trab: Usuario) {
     return this.http.post<any>(this.urlLogeoTrab, trab);
   }
-  registrarUsuario(user) {
+  registrarUsuario(user: Usuario) {
     return this.http.post<any>(this.urlRexistro, user);
   }
   loggedIn() {
@@ -30,7 +31,7 @@ export class AutentificacionService {
   getToken() {
     return localStorage.getItem('token');
   }
-  logoutUser(){
+  logoutUser() {
     localStorage.removeItem('token');
     this.router.navigate(['/benvida']);
   }

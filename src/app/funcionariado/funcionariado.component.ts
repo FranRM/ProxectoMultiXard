@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AutentificacionService } from 'src/app/servicios/autentificacion.service';
+import { Usuario } from '../clases/Usuario';
 
 @Component({
   selector: 'app-funcionariado',
@@ -8,14 +9,12 @@ import { AutentificacionService } from 'src/app/servicios/autentificacion.servic
 })
 export class FuncionariadoComponent implements OnInit {
   logeado = false;
-  loginAdminData = {};
-
+  loginAdminData: Usuario;
   // TODO - Usar Angular Material para os HTML.
   constructor(private autentificacion: AutentificacionService) { }
 
   ngOnInit() {
   }
-
   logearAdministrador() {
     this.autentificacion.logearAdministrador(this.loginAdminData)
       .subscribe(

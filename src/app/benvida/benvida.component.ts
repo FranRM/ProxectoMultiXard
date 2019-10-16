@@ -8,8 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class BenvidaComponent implements OnInit {
   benvida = 'Benvido a MultiXard';
   constructor() { }
-
   ngOnInit() {
   }
-
 }

@@ -9,11 +9,9 @@ import { Usuario } from '../clases/Usuario';
   styleUrls: ['./clientela.component.sass']
 })
 export class ClientelaComponent implements OnInit {
-  loginUserData;
   contrasinal;
   isir;
-  user = new Usuario(this.isir, this.contrasinal);
-
+  user = new Usuario(this.isir, this.contrasinal, '', '');
   // TODO - Usar Angular Material para os HTML.
   constructor(private autentificacion: AutentificacionService, private appComp: AppComponent) { }
 
@@ -23,17 +21,15 @@ export class ClientelaComponent implements OnInit {
     this.appComp.logout();
   }
   logearCliente() {
-    this.loginUserData = { user: this.isir, pass: this.contrasinal };
-    this.autentificacion.logearUsuario(this.loginUserData)
+    this.autentificacion.logearUsuario(this.user)
       .subscribe(
         res => {
           console.log(res);
-          localStorage.setItem('token', res.token);
+          // localStorage.setItem('token', res.token);
           this.appComp.setLogeado(true);
-          console.log('Logeandose cos seguintes datos: ' + this.loginUserData);
+          console.log('Logeandose cos seguintes datos: ' + this.user);
         },
         err => console.log(err)
       );
   }
-
 }
