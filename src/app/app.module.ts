@@ -12,6 +12,7 @@ import { AutentificacionService } from './servicios/autentificacion.service';
 import { RexistroComponent } from './rexistro/rexistro.component';
 import { InterceptorTokenService } from '../app/servicios/interceptor-token.service';
 import { LoginComponent } from './login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [AutentificacionService,
    {

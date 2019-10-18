@@ -1,5 +1,5 @@
 <img src="../assets/imaxe/Logo.png" height="200px" width="300px" routerLink="/benvida"/>
-<a *ngIf="isLogeado()" (click)="logout()">{{logeado}}, logout?</a>
+<button *ngIf="isLogeado()" (click)="logout()">{{nome}}, logout?</button>
 <router-outlet>
 </router-outlet>
 <footer>Paxina creada por FranRM@github.</footer>

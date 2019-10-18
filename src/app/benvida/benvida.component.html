@@ -10,7 +10,7 @@
     <li><a routerLink="/login">Traballadores</a></li>
 </ul>
 -->
-<b *ngIf="!logeado" routerLink="/rexistro">Rexistrarse</b>
+<b *ngIf="!appComp.isLogeado()" routerLink="/rexistro">Rexistrarse</b>
 <h1>{{benvida}}</h1>
 <div>
     <img src="../assets/imaxe/jardineria-770x500.jpg" />

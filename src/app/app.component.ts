@@ -1,13 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { Location } from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
 import {AutentificacionService} from '../app/servicios/autentificacion.service';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
+})
+@NgModule({
+  imports: [MatMenuModule]
 })
 
 export class AppComponent {
@@ -17,6 +21,7 @@ export class AppComponent {
   constructor(private autenticador: AutentificacionService) {}
   public logeado = false;
   private location: Location;
+  nome: string;
   title = 'MultiXardApp';
   volverBenvida(): void {
     this.location.go('/benvida');
@@ -25,7 +30,8 @@ export class AppComponent {
     return this.logeado;
     }
   setLogeado(valor: boolean) {
-  this.logeado = valor;
+    this.logeado = valor;
+    this.nome = this.autenticador.usuario.user;
   }
   logout() {
     this.logeado = false;
