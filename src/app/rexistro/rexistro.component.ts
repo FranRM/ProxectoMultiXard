@@ -8,11 +8,11 @@ import { AutentificacionService } from '../servicios/autentificacion.service';
 })
 export class RexistroComponent implements OnInit {
   constructor(private autentificacion: AutentificacionService) { }
-  usuario = { "user": "", "pass": "", "name": "", "surname": "", "rol": "" };
+  usuario = { "mail": "","username": "", "pass": "", "name": "", "surname": "", "rol": "" };
   // TODO - Usar Angular Material para os HTML.
   ngOnInit() {}
   rexistrar() {
-    this.autentificacion.registrarUsuario(this.usuario)
+    this.autentificacion.registrar(this.usuario)
       .subscribe(
         res => {
           console.log(res);

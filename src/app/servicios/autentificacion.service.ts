@@ -17,19 +17,12 @@ export class AutentificacionService {
   constructor(private http: HttpClient, private router: Router) {
   }
   logearUsuario(user) {
-    console.log()
     return this.http.post<any>(this.urlLogeoUser, user);
   }
   recibirDatosUser(user) {
     return this.http.post<any>(this.urlGetUser, user);
   }
-  logearAdministrador(admin) {
-    return this.http.post<any>(this.urlLogeoAdmin, admin);
-  }
-  logearTraballador(trab) {
-    return this.http.post<any>(this.urlLogeoTrab, trab);
-  }
-  registrarUsuario(user) {
+  registrar(user) {
     return this.http.post<any>(this.urlRexistro, user);
   }
   loggedIn() {
@@ -43,7 +36,7 @@ export class AutentificacionService {
     this.router.navigate(['/benvida']);
     this.usuario = new Usuario('', '', '', '', '');
   }
-  setUsuario(mail: string, username: string, name: string, surname: string, rol: string){
+  setUsuario(mail: string, username: string, name: string, surname: string, rol: string) {
     this.usuario = new Usuario(mail, username, name, surname, rol);
   }
 }

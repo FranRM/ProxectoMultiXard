@@ -1,11 +1,16 @@
 <p>Complete os campos requeridos para proceder ó rexistro.</p>
 <form >
     <section>
+        <input [(ngModel)]="usuario.mail" name="caixaMail" type="text" placeholder="Email" />
         <input [(ngModel)]="usuario.name" name="caixaNome" type="text" placeholder="Nome" />
         <input [(ngModel)]="usuario.surname" name="caixaApelidos" type="text" placeholder="Apelidos" />
-        <input [(ngModel)]="usuario.user" name="caixaUsuario" type="text" placeholder="Usuario" />
+        <input [(ngModel)]="usuario.username" name="caixaUsuario" type="text" placeholder="Usuario" />
         <input [(ngModel)]="usuario.pass" name="caixaContrasinal" type="text" placeholder="Constrasinal" />
-        <input [(ngModel)]="usuario.rol" name="caixaContrasinal" type="radio" />
+        <select [(ngModel)]="usuario.rol" name="caixaRoles">
+            <option selected value="admin" >Administrador</option>
+            <option value="user">Usuario</option>
+            <option value="trab">Traballador</option>
+        </select>
     </section>
     <section>
     </section>
