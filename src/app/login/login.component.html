@@ -1,8 +1,9 @@
-<h2>Acceso:</h2>
+
 <form *ngIf="!logeado">
-    <input [(ngModel)]="usuario.user" name="caixaUsuarioL" type="text" placeholder="Usuario" />
+    <h2>Acceso:</h2>
+    <input [(ngModel)]="this.usuarioALogear.user" name="caixaUsuarioL" type="text" placeholder="Usuario" />
     <br />
-    <input [(ngModel)]="usuario.pass" name="caixaContrasinalL" type="password" placeholder="Constrasinal" />
+    <input [(ngModel)]="this.usuarioALogear.pass" name="caixaContrasinalL" type="password" placeholder="Constrasinal" />
     <br />
     <button (click)="logear()">Entrar</button>
 </form>

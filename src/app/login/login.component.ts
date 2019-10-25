@@ -10,8 +10,9 @@ import { Usuario } from '../clases/Usuario';
 })
 export class LoginComponent implements OnInit {
 
-  usuario: Usuario;
-  // TODO - Usar Angular Material para os HTML.
+  usuarioALogear = { "user": "", "pass": "" };
+  logueado = false;
+  // TODO - Usar Angular Material para os HTML.s
   constructor(private autentificacion: AutentificacionService, private ac: AppComponent) { }
   ngOnInit() {
   }
@@ -19,13 +20,24 @@ export class LoginComponent implements OnInit {
     this.ac.setLogeado(false);
   }
   logear() {
-    this.autentificacion.logearUsuario(this.usuario)
+    console.log('Usuario a logear: ' + this.usuarioALogear.user);
+    this.autentificacion.logearUsuario(this.usuarioALogear)
       .subscribe(
         res => {
-          console.log(res);
           localStorage.setItem('token', res.token);
+          this.pedirDatos();
+        },
+        err => console.log(err)
+      );
+  }
+  pedirDatos() {
+    this.autentificacion.recibirDatosUser(this.usuarioALogear)
+      .subscribe(
+        res => {
+          this.autentificacion.setUsuario(res.mail, res.username, res.name, res.surname, res.rol);
+          console.log('Logeandose cos seguintes datos: ' + this.autentificacion.usuario.getUser());
           this.ac.setLogeado(true);
-          console.log('Logeandose cos seguintes datos: ' + this.usuario);
+          this.ac.discriminarInicializacion();
         },
         err => console.log(err)
       );

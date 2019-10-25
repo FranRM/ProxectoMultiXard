@@ -1,10 +1,11 @@
 <p>Complete os campos requeridos para proceder ó rexistro.</p>
-<form *ngIf="!datosIntroducidos">
+<form >
     <section>
         <input [(ngModel)]="usuario.name" name="caixaNome" type="text" placeholder="Nome" />
         <input [(ngModel)]="usuario.surname" name="caixaApelidos" type="text" placeholder="Apelidos" />
         <input [(ngModel)]="usuario.user" name="caixaUsuario" type="text" placeholder="Usuario" />
         <input [(ngModel)]="usuario.pass" name="caixaContrasinal" type="text" placeholder="Constrasinal" />
+        <input [(ngModel)]="usuario.rol" name="caixaContrasinal" type="radio" />
     </section>
     <section>
     </section>

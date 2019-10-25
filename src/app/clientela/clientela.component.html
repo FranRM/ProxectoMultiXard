@@ -1,11 +1,1 @@
 <h1>Zona de Clientes:</h1>
-<h2>Acceso:</h2>
-<form *ngIf="!appComp.isLogeado()">
-    <input [(ngModel)]="datosUsuario.user" name="caixaUsuarioL" type="text" placeholder="Usuario" />
-    <br />
-    <input [(ngModel)]="datosUsuario.pass" name="caixaContrasinalL" type="password" placeholder="Constrasinal" />
-    <br />
-    <button (click)="logearCliente()">Entrar</button>
-</form>
-<button *ngIf="appComp.isLogeado()" (click)="pecharSesion()">Pechar sesión</button>
-<button *ngIf="appComp.isLogeado()" (click)="pedirDatos()">Pedir datos</button>

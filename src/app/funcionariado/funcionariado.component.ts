@@ -8,25 +8,6 @@ import { Usuario } from '../clases/Usuario';
   styleUrls: ['./funcionariado.component.sass']
 })
 export class FuncionariadoComponent implements OnInit {
-  logeado = false;
-  loginAdminData: Usuario;
-  // TODO - Usar Angular Material para os HTML.
-  constructor(private autentificacion: AutentificacionService) { }
-
-  ngOnInit() {
-  }
-  logearAdministrador() {
-    this.autentificacion.logearAdministrador(this.loginAdminData)
-      .subscribe(
-        res => {
-          console.log(res);
-          this.logeado = true;
-        },
-        err => console.log(err)
-      );
-    console.log('Logeandose cos seguintes datos: ' + this.loginAdminData);
-  }
-  pecharSesion() {
-    this.logeado = false;
-  }
+  constructor() { }
+  ngOnInit() { }
 }
