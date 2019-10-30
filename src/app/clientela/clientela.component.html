@@ -1,8 +1,11 @@
 <h1>Zona de Clientes:</h1>
-<a>{{usuarioLocal.mail}},{{usuarioLocal.name}},{{usuarioLocal.rol}},{{usuarioLocal.surname}},{{usuarioLocal.username}}</a>
+
 <div>
     <h3>Os meus xardins</h3>
-    <ul><li *ngFor="let x of usuarioLocal.xardins"><a >{{x.direccion}}</a></li></ul>
+    <ul><li *ngFor="let x of usuarioLocal.xardins">
+        <input [(ngModel)]="x.direccion" name="caixaDireccion" type="text" placeholder="Direccion" />
+        <input [(ngModel)]="x.accions" name="caixaAccions" type="text" placeholder="Accions" />
+</li></ul>
     
 </div>
 <button (click)="adicionXardin()">Engadir xardín</button>

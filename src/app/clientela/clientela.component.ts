@@ -29,4 +29,3 @@ export class ClientelaComponent implements OnInit {
       );
   }
   }
-}
