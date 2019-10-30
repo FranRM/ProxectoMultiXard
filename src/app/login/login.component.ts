@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     this.autentificacion.recibirDatosUser(this.usuarioALogear)
       .subscribe(
         res => {
-          this.autentificacion.setUsuario(res.mail, res.username, res.name, res.surname, res.rol);
+          this.autentificacion.setUsuario(res.mail, res.username, res.name, res.surname, res.rol, res.xardins);
           console.log('Logeandose cos seguintes datos: ' + this.autentificacion.usuario.getUser());
           this.ac.setLogeado(true);
           this.ac.discriminarInicializacion();

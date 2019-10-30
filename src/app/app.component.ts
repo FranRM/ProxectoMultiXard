@@ -31,20 +31,22 @@ export class AppComponent {
   }
   setLogeado(valor: boolean) {
     this.logeado = valor;
-    this.nome = this.autenticador.usuario.user;
+    this.nome = this.autenticador.usuario.username;
   }
   logout() {
     this.logeado = false;
     this.autenticador.logoutUser();
   }
   discriminarInicializacion() {
-    console.log(this.autenticador.usuario.getRol());
     switch (this.autenticador.usuario.getRol()) {
-      case "admin": this.router.navigate(['/funcionariado']);
+      case "admin":
+        this.router.navigate(['/funcionariado']);
         break;
-      case "user": this.router.navigate(['/clientela']);
+      case "user":
+        this.router.navigate(['/clientela']);
         break;
-      default: this.router.navigate(['/proletariado']);
+      default:
+        this.router.navigate(['/proletariado']);
         break;
     }
   }

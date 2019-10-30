@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Usuario } from '../clases/Usuario';
+import { Xardin } from '../clases/Xardin';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +10,8 @@ import { Usuario } from '../clases/Usuario';
 export class AutentificacionService {
   private urlLogeoUser = 'http://localhost:3000/api/login';
   private urlGetUser = 'http://localhost:3000/api/peticion';
-  private urlLogeoAdmin = 'http://localhost:3000/api/loginAdmin';
-  private urlLogeoTrab = 'http://localhost:3000/api/loginTrab';
   private urlRexistro = 'http://localhost:3000/api/register';
+  private urlGardado = 'http://localhost:3000/api/gardar';
   // TODO - Implementar os roles para a DB, e acabar de centralizar os 3 logins.
   usuario: Usuario;
   constructor(private http: HttpClient, private router: Router) {
@@ -25,6 +25,9 @@ export class AutentificacionService {
   registrar(user) {
     return this.http.post<any>(this.urlRexistro, user);
   }
+  gardar(user) {
+    return this.http.post<any>(this.urlGardado, user);
+  }
   loggedIn() {
     return !!localStorage.getItem('token');
   }
@@ -34,9 +37,9 @@ export class AutentificacionService {
   logoutUser() {
     localStorage.removeItem('token');
     this.router.navigate(['/benvida']);
-    this.usuario = new Usuario('', '', '', '', '');
+    this.usuario = new Usuario('', '', '', '', '', null);
   }
-  setUsuario(mail: string, username: string, name: string, surname: string, rol: string) {
-    this.usuario = new Usuario(mail, username, name, surname, rol);
+  setUsuario(mail: string, username: string, name: string, surname: string, rol: string, xardins: Array<Xardin>) {
+    this.usuario = new Usuario(mail, username, name, surname, rol, xardins);
   }
 }
