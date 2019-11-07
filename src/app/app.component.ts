@@ -23,26 +23,31 @@ export class AppComponent {
   private location: Location;
   nome: string;
   title = 'MultiXardApp';
+
   volverBenvida(): void {
     this.location.go('/benvida');
   }
+
   isLogeado(): boolean {
     return this.logeado;
   }
+
   setLogeado(valor: boolean) {
     this.logeado = valor;
     this.nome = this.autenticador.usuario.username;
   }
+
   logout() {
     this.logeado = false;
     this.autenticador.logoutUser();
   }
+
   discriminarInicializacion() {
     switch (this.autenticador.usuario.getRol()) {
-      case "admin":
+      case 'admin':
         this.router.navigate(['/funcionariado']);
         break;
-      case "user":
+      case 'user':
         this.router.navigate(['/clientela']);
         break;
       default:

@@ -11,14 +11,18 @@ import { Usuario } from '../clases/Usuario';
 export class LoginComponent implements OnInit {
 
   usuarioALogear = { "user": "", "pass": "" };
+  // Como non vou a traballar coa pass dentro da app, utilizo este JSON provisional.
   logueado = false;
-  // TODO - Usar Angular Material para os HTML.s
+  // TODO - Usar Angular Material para os HTML.
   constructor(private autentificacion: AutentificacionService, private ac: AppComponent) { }
+
   ngOnInit() {
   }
+
   pecharSesion() {
     this.ac.setLogeado(false);
   }
+
   logear() {
     console.log('Usuario a logear: ' + this.usuarioALogear.user);
     this.autentificacion.logearUsuario(this.usuarioALogear)
@@ -27,19 +31,28 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token', res.token);
           this.pedirDatos();
         },
-        err => console.log(err)
+        err => console.error(err)
       );
   }
+
   pedirDatos() {
     this.autentificacion.recibirDatosUser(this.usuarioALogear)
       .subscribe(
-        res => {
-          this.autentificacion.setUsuario(res.mail, res.username, res.name, res.surname, res.rol, res.xardins);
+        user => {
+          this.autentificacion.setUsuario(
+            user.mail,
+            user.username,
+            user.name,
+            user.surname,
+            user.rol,
+            user.xardins
+          );
           console.log('Logeandose cos seguintes datos: ' + this.autentificacion.usuario.getUser());
           this.ac.setLogeado(true);
           this.ac.discriminarInicializacion();
         },
-        err => console.log(err)
+        err => console.error(err)
       );
   }
+
 }
