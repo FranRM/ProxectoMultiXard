@@ -8,10 +8,9 @@
             <input [(ngModel)]="xardin.direccion" name="caixaDireccion" type="text" placeholder="Direccion" />
             <input [(ngModel)]="xardin.accions" name="caixaAccions" type="text" placeholder="Accions" />
             <button><img src="../../assets/imaxe/tools.png"></button>
+            <app-mapa [xardinLocal]="xardin"></app-mapa>
         </li>
     </ul>
 </div>
-<div id="mapa"></div>
-<button (click)="imprimirCoordenadas()">Imprimir coordenadas</button>
 <button (click)="adicionXardin()">Engadir xardín</button>
 <button (click)="gardarDatos()">Gardar</button>

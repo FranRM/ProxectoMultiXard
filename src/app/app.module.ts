@@ -14,6 +14,7 @@ import { InterceptorTokenService } from '../app/servicios/interceptor-token.serv
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GeocodingService } from '../app/servicios/geocoding.service';
+import { MapaComponent } from './mapa/mapa.component';
 
 
 
@@ -25,7 +26,8 @@ import { GeocodingService } from '../app/servicios/geocoding.service';
     FuncionariadoComponent,
     BenvidaComponent,
     RexistroComponent,
-    LoginComponent
+    LoginComponent,
+    MapaComponent
   ],
   imports: [
     BrowserModule,

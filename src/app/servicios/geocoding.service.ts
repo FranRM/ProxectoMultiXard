@@ -1,22 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Geo } from '@mapbox/mapbox-gl-geocoder';
-
-
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class GeocodingService {
-  constructor(private geo: Geo) {
-    this.geo.accessToken('pk.eyJ1IjoiZmVtaW8yMyIsImEiOiJjazJscm9jdHYwNzQ3M2NubDVraGg0dWx4In0.hP7aMRiLTs6UW07VB5ehKg');
+  private urlGeocode = 'http://localhost:3000/api/conseguirCoordenadas';
+  constructor(private http: HttpClient) {}
+  public geocodificar(direccion) {
+    return this.http.post<any>(this.urlGeocode, direccion);
   }
-  geocodificar() {
-    this.geo.geocode('mapbox.places', 'Vigo,Spain', (err, geoData) => {
+  /*public geocodificarInverso() {
+    return this.geo.reverseGeocode('mapbox.places', '4.8936580', '52.3731720', (err, geoData) => {
       console.log(geoData);
     });
-  }
-  geocodificarInverso() {
-    this.geo.reverseGeocode('mapbox.places', '4.8936580', '52.3731720', (err, geoData) => {
-      console.log(geoData);
-    });
-  }
+  }*/
 }
