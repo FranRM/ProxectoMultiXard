@@ -14,17 +14,30 @@ export class MapaComponent implements OnInit {
   @ViewChild('map', { static: false }) mapContainer: ElementRef;
   map: Leaflet;
   marker;
-  constructor() { }
+  constructor( private geo: GeocodingService) { }
 
   ngOnInit() {
   }
+
   ngAfterViewInit() {
     this.loadMap();
+    if (!!this.xardinLocal.direccion) {
+      this.geo.geocodificar(this.xardinLocal).subscribe(
+        coordenadas => {
+          console.log('Coordenadas: ');
+          this.colocarMarcadorGeocode(coordenadas);
+        },
+        erro => {
+          console.error('Erro na recepción das coordenadas' + erro);
+        }
+      );
+    }
     this.map.on('click', e => {
-      this.colocarMarcador(e);
+      this.colocarMarcadorPulsando(e);
       this.imprimirCoordenadas(e);
     });
   }
+
   loadMap() {
     this. map = Leaflet.map(this.xardinLocal.direccion).setView([42.45892719924497, -8.751983642578127], 10);
     Leaflet.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -34,13 +47,21 @@ export class MapaComponent implements OnInit {
       accessToken: 'pk.eyJ1IjoiZmVtaW8yMyIsImEiOiJjazJscm9jdHYwNzQ3M2NubDVraGg0dWx4In0.hP7aMRiLTs6UW07VB5ehKg'
     }).addTo(this.map);
   }
-  colocarMarcador(e) {
+
+  colocarMarcadorPulsando(e) {
     if (this.map.hasLayer(this.marker)) {
       this.map.removeLayer(this.marker);
       this.imprimirCoordenadas(e);
     }
     this.marker = Leaflet.marker([e.latlng.lat, e.latlng.lng]).addTo(this.map);
   }
+  colocarMarcadorGeocode(coordenadas) {
+    if (this.map.hasLayer(this.marker)) {
+      this.map.removeLayer(this.marker);
+    }
+    this.marker = Leaflet.marker([coordenadas[1], coordenadas[0]]).addTo(this.map);
+  }
+
   imprimirCoordenadas(e) {
     console.log('Coordenadas: Latitude = ' + e.latlng.lat + ' Lonxitude = ' + e.latlng.lng);
     console.log(this.map.getZoom());

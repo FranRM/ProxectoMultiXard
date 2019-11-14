@@ -14,9 +14,11 @@ export class ClientelaComponent implements OnInit {
 
   constructor(private autenticador: AutentificacionService, private router: Router) {
    }
+
   ngOnInit() {
     this.usuarioLocal = this.autenticador.usuario;
   }
+
   ngAfterViewInit() {
     if (!!this.autenticador.usuario) {
       this.usuarioLocal.xardins.forEach((xardin) => {
@@ -25,10 +27,12 @@ export class ClientelaComponent implements OnInit {
       this.router.navigate(['/benvida']);
     }
   }
+
   adicionXardin() {
     this.usuarioLocal.setXardin(new Xardin('Rúa dos colexios-1, Dena.', 'Corte de céspede.'));
     console.log(this.usuarioLocal);
   }
+
   gardarDatos() {
     this.autenticador.gardar(this.usuarioLocal)
       .subscribe(
