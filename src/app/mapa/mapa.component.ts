@@ -24,7 +24,7 @@ export class MapaComponent implements OnInit {
     if (!!this.xardinLocal.direccion) {
       this.geo.geocodificar(this.xardinLocal).subscribe(
         coordenadas => {
-          console.log('Coordenadas: ');
+          console.log('Coordenadas: Latitude: ' + coordenadas[1] + ', Lonxitude: ' + coordenadas[0]);
           this.colocarMarcadorGeocode(coordenadas);
         },
         erro => {

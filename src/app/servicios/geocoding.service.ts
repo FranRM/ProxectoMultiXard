@@ -5,13 +5,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class GeocodingService {
   private urlGeocode = 'http://localhost:3000/api/conseguirCoordenadas';
+  private urlGeocodeInverso = 'http://localhost:3000/api/conseguirDireccion';
   constructor(private http: HttpClient) {}
   geocodificar(xardin) {
     return this.http.post<any>(this.urlGeocode, xardin);
   }
-  /*public geocodificarInverso() {
-    return this.geo.reverseGeocode('mapbox.places', '4.8936580', '52.3731720', (err, geoData) => {
-      console.log(geoData);
-    });
-  }*/
+  public geocodificarInverso(xardin) {
+    return this.http.post<any>(this.urlGeocodeInverso, xardin);
+  }
 }

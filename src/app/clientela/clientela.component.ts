@@ -11,8 +11,13 @@ import { Router } from '@angular/router';
 })
 export class ClientelaComponent implements OnInit {
   public usuarioLocal: Usuario;
+  edicion;
+  creacion;
+  indiceParaAModificación;
+  public xardinAEditar: Xardin;
 
   constructor(private autenticador: AutentificacionService, private router: Router) {
+    this.edicion = false;
    }
 
   ngOnInit() {
@@ -21,16 +26,16 @@ export class ClientelaComponent implements OnInit {
 
   ngAfterViewInit() {
     if (!!this.autenticador.usuario) {
-      this.usuarioLocal.xardins.forEach((xardin) => {
-      });
     } else {
       this.router.navigate(['/benvida']);
     }
   }
 
+  getDireccion() {
+    return this.xardinAEditar.direccion;
+  }
   adicionXardin() {
-    this.usuarioLocal.setXardin(new Xardin('Rúa dos colexios-1, Dena.', 'Corte de céspede.'));
-    console.log(this.usuarioLocal);
+    this.usuarioLocal.setXardin(new Xardin('', '', ''));
   }
 
   gardarDatos() {
@@ -41,5 +46,20 @@ export class ClientelaComponent implements OnInit {
         },
         err => console.error(err)
       );
+  }
+
+  editarXardin(xardin) {
+    this.edicion = true;
+    this.xardinAEditar = xardin;
+    this.indiceParaAModificación = this.usuarioLocal.xardins.indexOf(this.xardinAEditar);
+  }
+
+  actualizarDatos() {
+    this.usuarioLocal.xardins.splice(this.indiceParaAModificación,1);
+    this.usuarioLocal.xardins.push(this.xardinAEditar);
+    this.edicion = false;
+  }
+  busquedaXardin(xardin: Xardin) {
+    return xardin.direccion === this.getDireccion();
   }
 }
