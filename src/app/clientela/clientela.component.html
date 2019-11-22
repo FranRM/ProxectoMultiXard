@@ -1,21 +1,27 @@
 <h1>Zona de Clientes:</h1>
 <h3>Os meus xardins</h3>
-<div *ngIf="this.edicion === false">
+<div *ngIf="this.verVisualizacion === true">
     <ul>
         <li *ngFor="let xardin of usuarioLocal.xardins">
             <a>{{xardin.nome}}</a>
             <a>{{xardin.direccion}}</a>
             <a>{{xardin.accions}}</a>
             <button (click)="this.editarXardin(this.xardin)"><img src="../../assets/imaxe/tools.png"></button>
+            <button (click)="this.eliminarXardin(xardin)"><img src="../../assets/imaxe/delete.png"></button>
             <app-mapa [xardinLocal]="xardin"></app-mapa>
         </li>
     </ul>
-    <button (click)="adicionXardin()">Engadir xardín</button>
+    <button (click)="this.novoXardin()">Engadir xardín</button>
     <button (click)="gardarDatos()">Gardar</button>
 </div>
-<div *ngIf="this.edicion === true">
-    <input [(ngModel)]="this.xardinAEditar.nome" name="caixaNome" type="text" placeholder="nome" />
+<div *ngIf="this.verEdicion === true">
     <input [(ngModel)]="this.xardinAEditar.direccion" name="caixaDireccion" type="text" placeholder="Direccion" />
     <input [(ngModel)]="this.xardinAEditar.accions" name="caixaAccions" type="text" placeholder="Accions" />
     <button (click)="actualizarDatos()">Actualizar datos</button>
+</div>
+<div *ngIf="this.verCreacion === true">
+    <input [(ngModel)]="this.nomeNovo" name="caixaNome" type="text" placeholder="Nome" />
+    <input [(ngModel)]="this.direccionNova" name="caixaDireccion" type="text" placeholder="Direccion" />
+    <input [(ngModel)]="this.accionNova" name="caixaAccions" type="text" placeholder="Accions" />
+    <button (click)="this.engadirXardin()">Gardar novo xardín</button>
 </div>

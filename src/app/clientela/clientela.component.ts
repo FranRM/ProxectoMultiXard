@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild, NgZone, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AutentificacionService } from '../servicios/autentificacion.service';
 import { Usuario } from '../clases/Usuario';
 import { Xardin } from '../clases/Xardin';
 import { Router } from '@angular/router';
+import { MapaComponent } from '../mapa/mapa.component';
 
 @Component({
   selector: 'app-clientela',
@@ -11,13 +12,17 @@ import { Router } from '@angular/router';
 })
 export class ClientelaComponent implements OnInit {
   public usuarioLocal: Usuario;
-  edicion;
-  creacion;
-  indiceParaAModificación;
+  verEdicion = false;
+  verCreacion = false;
+  verVisualizacion = true;
+  nomeNovo;
+  direccionNova;
+  accionNova;
+  coordenadas;
   public xardinAEditar: Xardin;
 
   constructor(private autenticador: AutentificacionService, private router: Router) {
-    this.edicion = false;
+    this.verEdicion = false;
    }
 
   ngOnInit() {
@@ -31,11 +36,21 @@ export class ClientelaComponent implements OnInit {
     }
   }
 
+  cambiarEdicion() {
+    this.verEdicion = !this.verEdicion;
+    this.verVisualizacion = !this.verVisualizacion;
+  }
+
+  cambiarCreacion() {
+    this.verCreacion = !this.verCreacion;
+    this.verVisualizacion = !this.verVisualizacion;
+  }
+
   getDireccion() {
     return this.xardinAEditar.direccion;
   }
-  adicionXardin() {
-    this.usuarioLocal.setXardin(new Xardin('', '', ''));
+  novoXardin() {
+    this.cambiarCreacion();
   }
 
   gardarDatos() {
@@ -49,17 +64,27 @@ export class ClientelaComponent implements OnInit {
   }
 
   editarXardin(xardin) {
-    this.edicion = true;
+    this.cambiarEdicion();
     this.xardinAEditar = xardin;
-    this.indiceParaAModificación = this.usuarioLocal.xardins.indexOf(this.xardinAEditar);
+  }
+
+  eliminarXardin(xardin) {
+    this.xardinAEditar = xardin;
+    this.usuarioLocal.xardins.splice(this.usuarioLocal.xardins.indexOf(xardin), 1);
   }
 
   actualizarDatos() {
-    this.usuarioLocal.xardins.splice(this.indiceParaAModificación,1);
+    this.usuarioLocal.xardins.splice(this.usuarioLocal.xardins.indexOf(this.xardinAEditar), 1);
     this.usuarioLocal.xardins.push(this.xardinAEditar);
-    this.edicion = false;
+    this.cambiarEdicion();
   }
-  busquedaXardin(xardin: Xardin) {
-    return xardin.direccion === this.getDireccion();
+
+  engadirXardin() {
+    this.usuarioLocal.setXardin(new Xardin(this.nomeNovo, this.direccionNova, this.accionNova));
+    this.cambiarCreacion();
+  }
+  recibirXardin(xardin: Xardin) {
+    this.usuarioLocal.xardins.splice(this.usuarioLocal.xardins.indexOf(xardin), 1);
+    this.usuarioLocal.xardins.push(xardin);
   }
 }

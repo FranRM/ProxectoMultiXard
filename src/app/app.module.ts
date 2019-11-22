@@ -13,7 +13,6 @@ import { RexistroComponent } from './rexistro/rexistro.component';
 import { InterceptorTokenService } from '../app/servicios/interceptor-token.service';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GeocodingService } from '../app/servicios/geocoding.service';
 import { MapaComponent } from './mapa/mapa.component';
 
 
