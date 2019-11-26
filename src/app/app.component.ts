@@ -11,14 +11,14 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
-@NgModule({
-  imports: [MatMenuModule]
-})
 
 export class AppComponent {
   // TODO - Engadir minimenú para o logout ensinando datos do user logueado.
   // TODO - Internacionalizar a app.
-  constructor(private autenticador: AutentificacionService, private router: Router) {}
+  constructor(
+    private autenticador: AutentificacionService,
+    private router: Router
+  ) {}
   public logeado = false;
   private location: Location;
   nome: string;
