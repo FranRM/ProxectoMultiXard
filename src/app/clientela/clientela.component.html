@@ -1,27 +1,55 @@
 <h1>Zona de Clientes:</h1>
-<h3>Os meus xardins</h3>
-<div *ngIf="this.verVisualizacion === true">
-    <ul>
-        <li *ngFor="let xardin of usuarioLocal.xardins">
-            <a>{{xardin.nome}}</a>
-            <a>{{xardin.direccion}}</a>
-            <a>{{xardin.accions}}</a>
-            <button (click)="this.editarXardin(this.xardin)"><img src="../../assets/imaxe/tools.png"></button>
-            <button (click)="this.eliminarXardin(xardin)"><img src="../../assets/imaxe/delete.png"></button>
-            <app-mapa [xardinLocal]="xardin"></app-mapa>
-        </li>
-    </ul>
-    <button (click)="this.novoXardin()">Engadir xardín</button>
-    <button (click)="gardarDatos()">Gardar</button>
-</div>
-<div *ngIf="this.verEdicion === true">
-    <input [(ngModel)]="this.xardinAEditar.direccion" name="caixaDireccion" type="text" placeholder="Direccion" />
-    <input [(ngModel)]="this.xardinAEditar.accions" name="caixaAccions" type="text" placeholder="Accions" />
-    <button (click)="actualizarDatos()">Actualizar datos</button>
-</div>
-<div *ngIf="this.verCreacion === true">
-    <input [(ngModel)]="this.nomeNovo" name="caixaNome" type="text" placeholder="Nome" />
-    <input [(ngModel)]="this.direccionNova" name="caixaDireccion" type="text" placeholder="Direccion" />
-    <input [(ngModel)]="this.accionNova" name="caixaAccions" type="text" placeholder="Accions" />
-    <button (click)="this.engadirXardin()">Gardar novo xardín</button>
-</div>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <h3>Os meus xardins</h3>
+            </mat-panel-title>
+            <mat-panel-description></mat-panel-description>
+        </mat-expansion-panel-header>
+    <div *ngIf="this.verVisualizacion === true">
+        <ul>
+            <li *ngFor="let xardin of usuarioLocal.xardins">
+                <a>{{xardin.nome}}</a>
+                <a>{{xardin.direccion}}</a>
+                <a>{{xardin.accions}}</a>
+                <button (click)="this.editarXardin(this.xardin)"><img src="../../assets/imaxe/tools.png"></button>
+                <button (click)="this.eliminarXardin(xardin)"><img src="../../assets/imaxe/delete.png"></button>
+                <app-mapa [xardinLocal]="xardin"></app-mapa>
+            </li>
+        </ul>
+        <button (click)="this.novoXardin()">Engadir xardín</button>
+        <button (click)="gardarDatos()">Gardar</button>
+    </div>
+    <div *ngIf="this.verEdicion === true">
+        <input [(ngModel)]="this.xardinAEditar.direccion" name="caixaDireccion" type="text" placeholder="Direccion" />
+        <input [(ngModel)]="this.xardinAEditar.accions" name="caixaAccions" type="text" placeholder="Accions" />
+        <button (click)="actualizarDatos()">Actualizar datos</button>
+    </div>
+    <div *ngIf="this.verCreacion === true">
+        <input [(ngModel)]="this.nomeNovo" name="caixaNome" type="text" placeholder="Nome" />
+        <input [(ngModel)]="this.direccionNova" name="caixaDireccion" type="text" placeholder="Direccion" />
+        <input [(ngModel)]="this.accionNova" name="caixaAccions" type="text" placeholder="Accions" />
+        <button (click)="this.engadirXardin()">Gardar novo xardín</button>
+    </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <h3>As miñas peticións.</h3>
+            </mat-panel-title>
+            <mat-panel-description></mat-panel-description>
+        </mat-expansion-panel-header>
+        Por implementar.
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <h3>As miñas facturas.</h3>
+            </mat-panel-title>
+            <mat-panel-description></mat-panel-description>
+        </mat-expansion-panel-header>
+    Por implementar.
+    </mat-expansion-panel>
+
+
+
