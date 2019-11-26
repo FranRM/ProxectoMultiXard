@@ -1,9 +1,35 @@
 
-<form *ngIf="!logeado">
-    <h2>Acceso:</h2>
-    <input [(ngModel)]="this.usuarioALogear.user" name="caixaUsuarioL" type="text" placeholder="Usuario" />
-    <br />
-    <input [(ngModel)]="this.usuarioALogear.pass" name="caixaContrasinalL" type="password" placeholder="Constrasinal" />
-    <br />
-    <button (click)="logear()">Entrar</button>
-</form>
+<div login-background>
+    <form *ngIf="!logeado">
+        <div class="login-container">
+            <mat-card >
+                <mat-card-header>
+                  <mat-card-title>Acceso</mat-card-title>  
+                </mat-card-header>
+                <mat-card-content>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Usuario</mat-label>
+                            <input
+                                matInput 
+                                [(ngModel)]="this.usuarioALogear.user" 
+                                name="caixaUsuarioL" 
+                                type="text" 
+                                />
+                        </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Contrasinal</mat-label>
+                        <input
+                            matInput 
+                            [(ngModel)]="this.usuarioALogear.pass" 
+                            name="caixaContrasinalL" 
+                            type="password" 
+                            />
+                    </mat-form-field>
+                    <button color="primary" 
+                        mat-raised-button 
+                        (click)="logear()">Entrar</button>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </form>
+</div>

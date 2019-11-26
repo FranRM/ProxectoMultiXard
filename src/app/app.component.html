@@ -1,5 +1,20 @@
-<img src="../assets/imaxe/Logo.png" height="200px" width="300px" routerLink="/benvida"/>
-<button *ngIf="isLogeado()" (click)="logout()">{{nome}}, logout?</button>
+<mat-toolbar>
+  <div>
+      <img src="../assets/imaxe/Logo.png" routerLink="/benvida"/>
+  </div>
+  <mat-option routerLink="/login">
+      Clientes
+  </mat-option>
+  <mat-option routerLink="/funcionariado">
+      Administracion
+  </mat-option>
+  <mat-option routerLink="/proletariado">
+      Traballadores
+  </mat-option>
+  <mat-option *ngIf="isLogeado()" (click)="logout()">
+      {{nome}}, logout?
+  </mat-option>
+</mat-toolbar>
 <router-outlet>
 </router-outlet>
-<footer>Paxina creada por FranRM@github.</footer>
+<footer><div>Paxina creada por FranRM@github.</div></footer>

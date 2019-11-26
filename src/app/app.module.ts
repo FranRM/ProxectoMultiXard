@@ -14,6 +14,7 @@ import { InterceptorTokenService } from '../app/servicios/interceptor-token.serv
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MapaComponent } from './mapa/mapa.component';
+import { MaterialModule } from './shared/material.module';
 import {MatExpansionModule} from '@angular/material';
 
 
@@ -35,6 +36,7 @@ import {MatExpansionModule} from '@angular/material';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MaterialModule
     MatExpansionModule
   ],
   providers: [AutentificacionService,
