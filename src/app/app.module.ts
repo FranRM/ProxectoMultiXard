@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MapaComponent } from './mapa/mapa.component';
 import { MaterialModule } from './shared/material.module';
 import {MatExpansionModule} from '@angular/material';
+import {NgbModule, NgbCarouselModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -28,7 +29,7 @@ import {MatExpansionModule} from '@angular/material';
     BenvidaComponent,
     RexistroComponent,
     LoginComponent,
-    MapaComponent
+    MapaComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,8 +37,10 @@ import {MatExpansionModule} from '@angular/material';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule
-    MatExpansionModule
+    MaterialModule,
+    MatExpansionModule,
+    NgbModule,
+    NgbCarouselModule
   ],
   providers: [AutentificacionService,
    {

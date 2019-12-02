@@ -4,6 +4,7 @@ import { Usuario } from '../clases/Usuario';
 import { Xardin } from '../clases/Xardin';
 import { Router } from '@angular/router';
 import { MapaComponent } from '../mapa/mapa.component';
+import { Parte } from '../clases/Parte';
 
 @Component({
   selector: 'app-clientela',
@@ -23,7 +24,11 @@ export class ClientelaComponent implements OnInit {
   direccionNova;
   accionNova;
   coordenadas;
+  accion;
+  observacions;
   public xardinAEditar: Xardin;
+  xardinSeleccionado: Xardin;
+  indiceBusqueda;
 
   constructor(
     private autenticador: AutentificacionService,
@@ -39,7 +44,7 @@ export class ClientelaComponent implements OnInit {
   ngAfterViewInit() {
     if (!!this.autenticador.usuario) {
     } else {
-      this.router.navigate(["/benvida"]);
+      this.router.navigate(['/benvida']);
     }
   }
 
@@ -63,7 +68,7 @@ export class ClientelaComponent implements OnInit {
   gardarDatos() {
     this.autenticador.gardar(this.usuarioLocal).subscribe(
       res => {
-        console.log("Usuario gardado: " + this.usuarioLocal.getUser());
+        console.log('Usuario gardado: ' + this.usuarioLocal.getUser());
       },
       err => console.error(err)
     );
@@ -103,5 +108,17 @@ export class ClientelaComponent implements OnInit {
       1
     );
     this.usuarioLocal.xardins.push(xardin);
+  }
+  engadirParte() {
+    this.xardinSeleccionado = this.usuarioLocal.xardins[this.indiceBusqueda];
+    this.autenticador.peticionServicio(new Parte(this.xardinSeleccionado, this.accion, this.observacions)).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => console.error(err)
+    );
+    this.accion = '';
+    this.observacions = '';
+    this.xardinSeleccionado = null;
   }
 }

@@ -1,16 +1,20 @@
-<mat-toolbar>
+<mat-toolbar class="toolbar" color="">
   <div>
       <img src="../assets/imaxe/Logo.png" routerLink="/benvida"/>
   </div>
+  <span class="example-fill-remaining-space"></span>
   <mat-option routerLink="/login">
       Clientes
   </mat-option>
-  <mat-option routerLink="/funcionariado">
+  <mat-option routerLink="/login">
       Administracion
   </mat-option>
-  <mat-option routerLink="/proletariado">
+  <mat-option routerLink="/login">
       Traballadores
   </mat-option>
+<mat-option *ngIf="!isLogeado()" routerLink="/rexistro">
+    Rexistrarse
+</mat-option>
   <mat-option *ngIf="isLogeado()" (click)="logout()">
       {{nome}}, logout?
   </mat-option>

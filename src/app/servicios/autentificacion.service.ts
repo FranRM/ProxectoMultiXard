@@ -12,6 +12,7 @@ export class AutentificacionService {
   private urlGetUser = 'http://localhost:3000/api/peticion';
   private urlRexistro = 'http://localhost:3000/api/register';
   private urlGardado = 'http://localhost:3000/api/gardar';
+  private urlParte = 'http://localhost:3000/api/parte';
   // TODO - Implementar os roles para a DB, e acabar de centralizar os 3 logins.
   usuario: Usuario;
   constructor(private http: HttpClient, private router: Router) {
@@ -24,6 +25,9 @@ export class AutentificacionService {
   }
   registrar(user) {
     return this.http.post<any>(this.urlRexistro, user);
+  }
+  peticionServicio(peticion) {
+    return this.http.post<any>(this.urlParte, peticion);
   }
   gardar(user) {
     return this.http.post<any>(this.urlGardado, user);
