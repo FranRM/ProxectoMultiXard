@@ -48,7 +48,7 @@
             <mat-form-field>
                 <input size="35" matInput [(ngModel)]="this.xardinAEditar.accions" name="caixaAccions" type="text" placeholder="Accions" />
             </mat-form-field>
-            <button mat-raised-button (click)="actualizarDatos()">Actualizar datos</button>
+            <button mat-raised-button class="xardin-button" (click)="actualizarDatos()">Actualizar datos</button>
         </mat-card>
     </div>
     <div *ngIf="this.verCreacion === true">
@@ -86,7 +86,7 @@
             <mat-form-field>
                 <textarea matInput placeholder="Leave a comment" [(ngModel)]="this.observacions"></textarea>
             </mat-form-field>
-            <button mat-raised-button (click)="this.engadirParte()">Crear novo parte.</button>
+            <button mat-raised-button class="xardin-button" (click)="this.engadirParte()">Crear novo parte.</button>
         </mat-card>
     </mat-expansion-panel>
     <mat-expansion-panel>
