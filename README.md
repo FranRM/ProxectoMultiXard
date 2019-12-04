@@ -3,8 +3,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.3.
 
 ## Default user for testing purposes.
-User: test.
-Pass: test.
+User/Pass: test/test
 
 ## Development server
 
