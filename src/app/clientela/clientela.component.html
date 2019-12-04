@@ -45,11 +45,13 @@
         <mat-card class="cartaParte">
             <mat-form-field>
                 <input size="35" matInput [(ngModel)]="this.xardinAEditar.direccion" 
-                name="caixaDireccion" type="text" placeholder="Direccion" />
+                name="caixaDireccion" type="text" placeholder="Direccion" 
+                required/>
             </mat-form-field>
             <mat-form-field>
                 <input size="35" matInput [(ngModel)]="this.xardinAEditar.accions" 
-                name="caixaAccions" type="text" placeholder="Accions" />
+                name="caixaAccions" type="text" placeholder="Accions"
+                required/>
             </mat-form-field>
             <button mat-raised-button class="xardin-button" 
             (click)="actualizarDatos()">Actualizar datos</button>
@@ -59,11 +61,12 @@
         <mat-card class="cartaParte">
             <mat-form-field>
                 <input size="35" matInput [(ngModel)]="this.nomeNovo" 
-                name="caixaNome" type="text" placeholder="Nome" />
+                name="caixaNome" type="text" placeholder="Nome" required/>
             </mat-form-field>
             <mat-form-field>
                 <input size="35" matInput [(ngModel)]="this.direccionNova"
-                name="caixaDireccion" type="text" placeholder="Direccion" />
+                name="caixaDireccion" type="text" placeholder="Direccion"
+                required/>
             </mat-form-field>
             <mat-form-field>
                 <input size="35" matInput [(ngModel)]="this.accionNova"
@@ -83,7 +86,7 @@
             <mat-panel-description></mat-panel-description>
         </mat-expansion-panel-header>
         <mat-card class="cartaParte">
-            <mat-form-field>
+            <mat-form-field required>
                 <mat-select [(ngModel)]="this.indiceBusqueda" 
                 placeholder="Elixe o xardin.">
                     <mat-option *ngFor="let xardin of usuarioLocal.xardins" 
@@ -93,10 +96,10 @@
             </mat-form-field>
             <mat-form-field>
                 <input size="35" matInput [(ngModel)]="this.accion" 
-                placeholder="Accions a realizar:" />
+                placeholder="Accions a realizar:" required/>
             </mat-form-field>
             <mat-form-field>
-                <textarea matInput placeholder="Leave a comment" 
+                <textarea matInput placeholder="Observacions adicionais:" 
                 [(ngModel)]="this.observacions">
             </textarea>
             </mat-form-field>

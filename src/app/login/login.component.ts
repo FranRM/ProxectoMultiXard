@@ -14,9 +14,11 @@ export class LoginComponent implements OnInit {
   usuarioALogear = { user: '', pass: '' };
   // Como non vou a traballar coa pass dentro da app, utilizo este JSON provisional.
   logueado = false;
+  erroLogeo = false;
   // TODO - Usar Angular Material para os HTML.
   constructor(private autentificacion: AutentificacionService,
               private ac: AppComponent) { }
+
 
   ngOnInit() {
   }
@@ -39,7 +41,6 @@ export class LoginComponent implements OnInit {
   }
 
   loguearContraServer(usuarioALogear) {
-    try {
       this.autentificacion.logearUsuario(usuarioALogear)
         .subscribe(
           res => {
@@ -48,12 +49,12 @@ export class LoginComponent implements OnInit {
             this.pedirDatos();
           },
           err => {
-              console.error(err);
+              console.error('Erro no intento de logeo: ' + err);
+              this.usuarioALogear.user = '';
+              this.usuarioALogear.pass = '';
+              this.erroLogeo = true;
           }
         );
-      } catch (HttpErrorResponse) {
-        console.error('Error en login contra server');
-      }
   }
 
   pedirDatos() {

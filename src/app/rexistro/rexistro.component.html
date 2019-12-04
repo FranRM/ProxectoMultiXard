@@ -8,29 +8,33 @@
                     <mat-form-field appearance="outline">
                         <mat-label>Usuario</mat-label>
                         <input matInput [(ngModel)]="usuario.username" 
-                        name="caixaUsuario" type="text" placeholder="Usuario" />
+                        name="caixaUsuario" type="text" placeholder="Usuario"
+                        required/>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                         <mat-label>Contrasinal</mat-label>
                         <input matInput [(ngModel)]="usuario.pass" 
-                        name="caixaContrasinal" type="text" placeholder="Constrasinal" />
+                        name="caixaContrasinal" type="text" placeholder="Constrasinal"
+                        required/>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                         <mat-label>Email</mat-label>
                         <input matInput [(ngModel)]="usuario.mail" 
-                        name="caixaMail" type="text" placeholder="Email" />
+                        name="caixaMail" type="text" placeholder="Email" 
+                        required/>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                         <mat-label>Nome</mat-label>
                     <input matInput [(ngModel)]="usuario.name" name="caixaNome" 
-                    type="text" placeholder="Nome" />
+                    type="text" placeholder="Nome" required/>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                         <mat-label>Apelidos</mat-label>
                     <input matInput [(ngModel)]="usuario.surname" 
-                    name="caixaApelidos" type="text" placeholder="Apelidos" />
+                    name="caixaApelidos" type="text" placeholder="Apelidos"
+                    required/>
                     </mat-form-field>
-                    <mat-form-field>
+                    <mat-form-field required>
                         <mat-label>Rol</mat-label>
                     <mat-select [(ngModel)]="usuario.rol" name="caixaRoles">
                         <mat-option selected value="admin">Administrador</mat-option>

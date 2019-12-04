@@ -5,6 +5,11 @@
                 <mat-card-header>
                   <mat-card-title>Acceso</mat-card-title>  
                 </mat-card-header>
+                <p *ngIf="this.erroLogeo">
+                    <ngb-alert [dismissible]="false">
+                        Erro ó intentar logearse, comprobe o seu usuario ou contrasinal.
+                    </ngb-alert>
+                </p>
                 <mat-card-content>
                         <mat-form-field appearance="outline">
                             <mat-label>Usuario</mat-label>
@@ -12,7 +17,7 @@
                                 matInput 
                                 [(ngModel)]="this.usuarioALogear.user" 
                                 name="caixaUsuarioL" 
-                                type="text" 
+                                type="text" required
                                 />
                         </mat-form-field>
                     <mat-form-field appearance="outline">
@@ -21,7 +26,8 @@
                             matInput 
                             [(ngModel)]="this.usuarioALogear.pass" 
                             name="caixaContrasinalL" 
-                            type="password" 
+                            type="password"
+                            required 
                             />
                     </mat-form-field>
                     <button color="primary" 
