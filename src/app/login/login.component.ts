@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AutentificacionService } from '../servicios/autentificacion.service';
 import { AppComponent } from '../app.component';
 import { Usuario } from '../clases/Usuario';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
   // Como non vou a traballar coa pass dentro da app, utilizo este JSON provisional.
   logueado = false;
   // TODO - Usar Angular Material para os HTML.
-  constructor(private autentificacion: AutentificacionService, private ac: AppComponent) { }
+  constructor(private autentificacion: AutentificacionService,
+              private ac: AppComponent) { }
 
   ngOnInit() {
   }
@@ -25,19 +27,33 @@ export class LoginComponent implements OnInit {
 
   logear() {
     console.log('Usuario a logear: ' + this.usuarioALogear.user);
-    this.autentificacion.logearUsuario(this.usuarioALogear)
-      .subscribe(
-        res => {
-          // TODO - Pasar de localStorage a sesionStorage.
-          localStorage.setItem('token', res.token);
-          this.pedirDatos();
-        },
-        err => {
-          console.error(err);
-          localStorage.setItem('token', 'rewweewfwefsdefvsfds');
-          this.pedirDatos();
-        }
-      );
+    if (this.usuarioALogear.user === 'test' &&
+     this.usuarioALogear.pass === 'test') {
+      this.pedirDatosTest();
+      this.ac.setLogeado(true);
+      this.ac.discriminarInicializacion();
+      localStorage.setItem('token', 'rewweewfwefsdefvsfds');
+    } else {
+      this.loguearContraServer(this.usuarioALogear);
+    }
+  }
+
+  loguearContraServer(usuarioALogear) {
+    try {
+      this.autentificacion.logearUsuario(usuarioALogear)
+        .subscribe(
+          res => {
+            // TODO - Pasar de localStorage a sesionStorage.
+            localStorage.setItem('token', res.token);
+            this.pedirDatos();
+          },
+          err => {
+              console.error(err);
+          }
+        );
+      } catch (HttpErrorResponse) {
+        console.error('Error en login contra server');
+      }
   }
 
   pedirDatos() {
@@ -52,62 +68,22 @@ export class LoginComponent implements OnInit {
             user.rol,
             user.xardins
           );
-          console.log('Logeandose cos seguintes datos: ' + this.autentificacion.usuario.getUser());
+          console.log('Logeandose cos seguintes datos: ' +
+          this.autentificacion.usuario.getUser());
           this.ac.setLogeado(true);
           this.ac.discriminarInicializacion();
         },
         err => {
-          this.autentificacion.setUsuario(
-            'pepe@multixard.gal',
-            'pepe',
-            'andres',
-            'perez albornoz',
-            'user',
-            [{
-              direccion: 'Calle de los colegios, 6, Dena, 36967, Pontevedra, Spain',
-              nome: 'Colexio Dena',
-              accions: 'Podar setos.',
-              latitude: 42.45631310971515,
-              lonxitude: -8.812494277954103
-            }, {
-                direccion: 'Paseo Praia Silgar, 44, Sanxenxo, Pontevedra, Spain',
-                nome: 'Xardín Tritón',
-                accions: 'Mantemento.',
-                latitude: 42.40166312365917,
-                lonxitude: -8.811480402946474
-              },
-              {
-                direccion: 'Xil-Ganón, 24, Meaño, Pontevedra, Spain',
-                nome: 'Casa',
-                accions: 'Cortar céspede.',
-                latitude: 42.45871744287056,
-                lonxitude: -8.803653717041017
-              }, {
-                direccion: 'Calle de los colegios, 65, Dena, 36967, Pontevedra, Spain',
-                nome: 'Colexio Dena',
-                accions: 'Podar setos.',
-                latitude: 42.45631310971515,
-                lonxitude: -8.812494277954103
-              }, {
-                direccion: 'Paseo Praia Silgar, 45, Sanxenxo, Pontevedra, Spain',
-                nome: 'Xardín Tritón',
-                accions: 'Mantemento.',
-                latitude: 42.40166312365917,
-                lonxitude: -8.811480402946474
-              },
-              {
-                direccion: 'Xil-Ganón, 245, Meaño, Pontevedra, Spain',
-                nome: 'Casa',
-                accions: 'Cortar céspede.',
-                latitude: 42.45871744287056,
-                lonxitude: -8.803653717041017
-              }]
-          );
-          console.log('Logeandose cos seguintes datos: ' + this.autentificacion.usuario.getUser());
-          this.ac.setLogeado(true);
-          this.ac.discriminarInicializacion();
-        }
+            console.error(err);
+          }
       );
   }
-
+  pedirDatosTest() {
+    this.autentificacion.setUsuario(this.autentificacion.getUsuarioTest().mail,
+      this.autentificacion.getUsuarioTest().username,
+      this.autentificacion.getUsuarioTest().name,
+      this.autentificacion.getUsuarioTest().surname,
+      this.autentificacion.getUsuarioTest().rol,
+      this.autentificacion.getUsuarioTest().xardins);
+  }
 }

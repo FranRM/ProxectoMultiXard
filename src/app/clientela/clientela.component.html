@@ -34,35 +34,44 @@
         </div>
         <br>
         <div class="btn-group" rule="group">
-            <button  type="button" class="btn btn-secondary" (click)="this.novoXardin()">Engadir
-                xardín</button>
-            <button  type="button" class="btn btn-secondary" (click)="gardarDatos()">Gardar</button>
+            <button  type="button" class="btn btn-secondary" 
+            (click)="this.novoXardin()">Engadir xardín</button>
+            <button  type="button" class="btn btn-secondary" 
+            (click)="gardarDatos()">Gardar</button>
         </div>
         
     </div>
     <div *ngIf="this.verEdicion === true">
         <mat-card class="cartaParte">
             <mat-form-field>
-                <input size="35" matInput [(ngModel)]="this.xardinAEditar.direccion" name="caixaDireccion" type="text" placeholder="Direccion" />
+                <input size="35" matInput [(ngModel)]="this.xardinAEditar.direccion" 
+                name="caixaDireccion" type="text" placeholder="Direccion" />
             </mat-form-field>
             <mat-form-field>
-                <input size="35" matInput [(ngModel)]="this.xardinAEditar.accions" name="caixaAccions" type="text" placeholder="Accions" />
+                <input size="35" matInput [(ngModel)]="this.xardinAEditar.accions" 
+                name="caixaAccions" type="text" placeholder="Accions" />
             </mat-form-field>
-            <button mat-raised-button class="xardin-button" (click)="actualizarDatos()">Actualizar datos</button>
+            <button mat-raised-button class="xardin-button" 
+            (click)="actualizarDatos()">Actualizar datos</button>
         </mat-card>
     </div>
     <div *ngIf="this.verCreacion === true">
         <mat-card class="cartaParte">
             <mat-form-field>
-                <input size="35" matInput [(ngModel)]="this.nomeNovo" name="caixaNome" type="text" placeholder="Nome" />
+                <input size="35" matInput [(ngModel)]="this.nomeNovo" 
+                name="caixaNome" type="text" placeholder="Nome" />
             </mat-form-field>
             <mat-form-field>
-                <input size="35" matInput [(ngModel)]="this.direccionNova" name="caixaDireccion" type="text" placeholder="Direccion" />
+                <input size="35" matInput [(ngModel)]="this.direccionNova"
+                name="caixaDireccion" type="text" placeholder="Direccion" />
             </mat-form-field>
             <mat-form-field>
-                <input size="35" matInput [(ngModel)]="this.accionNova" name="caixaAccions" type="text" placeholder="Accions" />
+                <input size="35" matInput [(ngModel)]="this.accionNova"
+                name="caixaAccions" type="text" placeholder="Accions" />
             </mat-form-field>
-            <button mat-raised-button (click)="this.engadirXardin()">Gardar novo xardín</button>
+            <button mat-raised-button (click)="this.engadirXardin()">
+                Gardar novo xardín
+            </button>
         </mat-card>
     </div>
     </mat-expansion-panel>
@@ -75,19 +84,53 @@
         </mat-expansion-panel-header>
         <mat-card class="cartaParte">
             <mat-form-field>
-                <mat-select [(ngModel)]="this.indiceBusqueda" placeholder="Elixe o xardin.">
-                    <mat-option *ngFor="let xardin of usuarioLocal.xardins" value={{this.usuarioLocal.xardins.indexOf(xardin)}}>
+                <mat-select [(ngModel)]="this.indiceBusqueda" 
+                placeholder="Elixe o xardin.">
+                    <mat-option *ngFor="let xardin of usuarioLocal.xardins" 
+                    value={{this.usuarioLocal.xardins.indexOf(xardin)}}>
                         {{xardin.nome}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field>
-                <input size="35" matInput [(ngModel)]="this.accion" placeholder="Accions a realizar:" />
+                <input size="35" matInput [(ngModel)]="this.accion" 
+                placeholder="Accions a realizar:" />
             </mat-form-field>
             <mat-form-field>
-                <textarea matInput placeholder="Leave a comment" [(ngModel)]="this.observacions"></textarea>
+                <textarea matInput placeholder="Leave a comment" 
+                [(ngModel)]="this.observacions">
+            </textarea>
             </mat-form-field>
-            <button mat-raised-button class="xardin-button" (click)="this.engadirParte()">Crear novo parte.</button>
+            <button mat-raised-button class="xardin-button" 
+            (click)="this.engadirParte()">
+            Crear novo parte.
+        </button>
         </mat-card>
+        <div class="card text-center" *ngFor="let parte of this.arrayPartes">
+            <mat-card>
+            <div class="card-header">
+                <h3>{{parte.xardin.nome}}</h3>
+            </div>
+            <div class="card-body">
+                <a>{{parte.accions}}</a><br>
+                <a>{{parte.observacions}}</a>
+            </div>
+            <div class="card-footer text-muted">
+                <mat-button-toggle-group>
+                    <mat-button-toggle class="xardin-button" color="primary" >
+                        <img src="../../assets/imaxe/tools.png">
+                    </mat-button-toggle>
+                    <mat-button-toggle class="xardin-button" color="primary" >
+                        <img src="../../assets/imaxe/delete.png">
+                    </mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+            </mat-card>
+        </div>
+        <br>
+        <button type="button" class="btn btn-secondary" 
+        (click)="gardarDatos()">
+        Gardar
+        </button>
     </mat-expansion-panel>
     <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -96,7 +139,21 @@
             </mat-panel-title>
             <mat-panel-description></mat-panel-description>
         </mat-expansion-panel-header>
-    Por implementar.
+    <div class="card text-center" *ngFor="let factura of this.arrayFacturas">
+        <mat-card>
+            <div class="card-header">
+                <h3>{{factura.parte.xardin.nome}}</h3>
+            </div>
+            <div class="card-body">
+                <a>{{factura.data.getDate()}}/{{factura.data.getMonth()}}
+                    /{{factura.data.getFullYear()}}</a><br>
+                <a>{{factura.parte.accions}}</a><br>
+            </div>
+            <div class="card-footer text-muted">
+                <a>{{this.returnVisualPagado(factura)}}</a>
+            </div>
+        </mat-card>
+    </div>
     </mat-expansion-panel>
 
 

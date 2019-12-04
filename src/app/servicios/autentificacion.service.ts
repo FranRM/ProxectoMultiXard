@@ -43,7 +43,55 @@ export class AutentificacionService {
     this.router.navigate(['/benvida']);
     this.usuario = new Usuario('', '', '', '', '', null);
   }
-  setUsuario(mail: string, username: string, name: string, surname: string, rol: string, xardins: Array<Xardin>) {
+  setUsuario(mail: string, username: string, name: string, surname: string,
+             rol: string, xardins: Array<Xardin>) {
     this.usuario = new Usuario(mail, username, name, surname, rol, xardins);
+  }
+  getUsuarioTest() {
+    const usuarioTest = new Usuario('test@multixard.gal',
+      'test',
+      'test',
+      'test test',
+      'user',
+      [{
+        direccion: 'Calle de los colegios, 6, Dena, 36967, Pontevedra, Spain',
+        nome: 'Colexio Dena',
+        accions: 'Podar setos.',
+        latitude: 42.45631310971515,
+        lonxitude: -8.812494277954103
+      }, {
+        direccion: 'Paseo Praia Silgar, 44, Sanxenxo, Pontevedra, Spain',
+        nome: 'Xardín Tritón',
+        accions: 'Mantemento.',
+        latitude: 42.40166312365917,
+        lonxitude: -8.811480402946474
+      },
+      {
+        direccion: 'Xil-Ganón, 24, Meaño, Pontevedra, Spain',
+        nome: 'Casa',
+        accions: 'Cortar céspede.',
+        latitude: 42.45871744287056,
+        lonxitude: -8.803653717041017
+      }, {
+        direccion: 'Calle de los colegios, 65, Dena, 36967, Pontevedra, Spain',
+        nome: 'Colexio Dena',
+        accions: 'Podar setos.',
+        latitude: 42.45631310971515,
+        lonxitude: -8.812494277954103
+      }, {
+        direccion: 'Paseo Praia Silgar, 45, Sanxenxo, Pontevedra, Spain',
+        nome: 'Xardín Tritón',
+        accions: 'Mantemento.',
+        latitude: 42.40166312365917,
+        lonxitude: -8.811480402946474
+      },
+      {
+        direccion: 'Xil-Ganón, 245, Meaño, Pontevedra, Spain',
+        nome: 'Casa',
+        accions: 'Cortar céspede.',
+        latitude: 42.45871744287056,
+        lonxitude: -8.803653717041017
+      }]);
+    return usuarioTest;
   }
 }

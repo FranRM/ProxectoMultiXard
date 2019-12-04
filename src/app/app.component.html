@@ -16,7 +16,7 @@
     Rexistrarse
 </mat-option>
   <mat-option *ngIf="isLogeado()" (click)="logout()">
-      {{nome}}, logout?
+      {{nome}} <img src="../assets/imaxe/exit.png"/>
   </mat-option>
 </mat-toolbar>
 <router-outlet>

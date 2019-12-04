@@ -5,7 +5,9 @@ import { Xardin } from '../clases/Xardin';
 import { Router } from '@angular/router';
 import { MapaComponent } from '../mapa/mapa.component';
 import { Parte } from '../clases/Parte';
-
+import {PeticionService} from '../servicios/peticion.service';
+import { FacturacionService } from '../servicios/facturacion.service';
+import { Factura } from '../clases/Factura';
 @Component({
   selector: 'app-clientela',
   templateUrl: './clientela.component.html',
@@ -28,17 +30,24 @@ export class ClientelaComponent implements OnInit {
   observacions;
   public xardinAEditar: Xardin;
   xardinSeleccionado: Xardin;
+  arrayPartes = Array<Parte>();
+  arrayFacturas = Array<Factura>();
   indiceBusqueda;
 
   constructor(
     private autenticador: AutentificacionService,
-    private router: Router
+    private router: Router,
+    private peticions: PeticionService,
+    private facturas: FacturacionService
   ) {
     this.verEdicion = false;
   }
 
   ngOnInit() {
     this.usuarioLocal = this.autenticador.usuario;
+    this.arrayPartes = this.peticions.getFakeArrayPartes();
+    this.arrayFacturas = this.facturas.getFakeArrayFacturas();
+
   }
 
   ngAfterViewInit() {
@@ -111,7 +120,10 @@ export class ClientelaComponent implements OnInit {
   }
   engadirParte() {
     this.xardinSeleccionado = this.usuarioLocal.xardins[this.indiceBusqueda];
-    this.autenticador.peticionServicio(new Parte(this.xardinSeleccionado, this.accion, this.observacions)).subscribe(
+    const parteLocal = new Parte(this.xardinSeleccionado, this.accion,
+      this.observacions);
+    this.arrayPartes.push(parteLocal);
+    this.autenticador.peticionServicio(parteLocal).subscribe(
       res => {
         console.log(res);
       },
@@ -120,5 +132,12 @@ export class ClientelaComponent implements OnInit {
     this.accion = '';
     this.observacions = '';
     this.xardinSeleccionado = null;
+  }
+  returnVisualPagado(factura: Factura) {
+    if (factura.pagado === true) {
+      return 'Factura xa pagada.';
+    } else {
+      return 'Factura pendente de pago.';
+    }
   }
 }
