@@ -3,7 +3,6 @@ import { AutentificacionService } from '../servicios/autentificacion.service';
 import { Usuario } from '../clases/Usuario';
 import { Xardin } from '../clases/Xardin';
 import { Router } from '@angular/router';
-import { MapaComponent } from '../mapa/mapa.component';
 import { Parte } from '../clases/Parte';
 import {PeticionService} from '../servicios/peticion.service';
 import { FacturacionService } from '../servicios/facturacion.service';
@@ -38,16 +37,25 @@ export class ClientelaComponent implements OnInit {
     private autenticador: AutentificacionService,
     private router: Router,
     private peticions: PeticionService,
-    private facturas: FacturacionService
+    private facturas: FacturacionService,
+    private serveParte: PeticionService
   ) {
     this.verEdicion = false;
   }
 
   ngOnInit() {
     this.usuarioLocal = this.autenticador.usuario;
-    this.arrayPartes = this.peticions.getFakeArrayPartes();
-    this.arrayFacturas = this.facturas.getFakeArrayFacturas();
-
+    if (this.usuarioLocal.getUser() === 'test') {
+      this.arrayFacturas = this.facturas.getFakeArrayFacturas();
+      this.arrayPartes = this.serveParte.getFakeArrayPartes();
+    } else {
+    this.peticions.peticionPartesCliente(this.usuarioLocal).subscribe(
+      res => {
+        this.arrayPartes = res;
+      },
+      err => {}
+    );
+  }
   }
 
   ngAfterViewInit() {
@@ -107,7 +115,7 @@ export class ClientelaComponent implements OnInit {
 
   engadirXardin() {
     this.usuarioLocal.setXardin(
-      new Xardin(this.nomeNovo, this.direccionNova, this.accionNova)
+      new Xardin(this.nomeNovo, this.direccionNova)
     );
     this.cambiarCreacion();
   }
@@ -120,10 +128,10 @@ export class ClientelaComponent implements OnInit {
   }
   engadirParte() {
     this.xardinSeleccionado = this.usuarioLocal.xardins[this.indiceBusqueda];
-    const parteLocal = new Parte(this.xardinSeleccionado, this.accion,
+    const parteLocal = new Parte(this.xardinSeleccionado, this.usuarioLocal.getUser(), this.accion,
       this.observacions);
     this.arrayPartes.push(parteLocal);
-    this.autenticador.peticionServicio(parteLocal).subscribe(
+    this.serveParte.peticionServicio(parteLocal).subscribe(
       res => {
         console.log(res);
       },

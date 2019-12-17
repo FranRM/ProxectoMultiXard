@@ -1,1 +1,17 @@
 <h1>Zona de Traballadores:</h1>
+<div class="card text-center" *ngFor="let parte of arrayPartes">
+    <div class="card-header">
+        <h3>{{parte.usuario}}</h3>
+    </div>
+    <div class="card-body">
+        <a>{{parte.xardin.nome}}</a>
+        <app-minimapa [xardinLocal]="parte.xardin"></app-minimapa>
+        <a>{{parte.accions}}</a><br>
+        <a>{{parte.observacions}}</a>
+    </div>
+    <div class="card-footer text-muted">
+            <mat-button-toggle class="xardin-button" color="primary" (click)="this.finalizarParte(parte)"><img
+                    src="../../assets/imaxe/validar.png">
+            </mat-button-toggle>
+    </div>
+</div>

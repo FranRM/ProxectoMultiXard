@@ -48,11 +48,6 @@
                 name="caixaDireccion" type="text" placeholder="Direccion" 
                 required/>
             </mat-form-field>
-            <mat-form-field>
-                <input size="35" matInput [(ngModel)]="this.xardinAEditar.accions" 
-                name="caixaAccions" type="text" placeholder="Accions"
-                required/>
-            </mat-form-field>
             <button mat-raised-button class="xardin-button" 
             (click)="actualizarDatos()">Actualizar datos</button>
         </mat-card>
@@ -67,10 +62,6 @@
                 <input size="35" matInput [(ngModel)]="this.direccionNova"
                 name="caixaDireccion" type="text" placeholder="Direccion"
                 required/>
-            </mat-form-field>
-            <mat-form-field>
-                <input size="35" matInput [(ngModel)]="this.accionNova"
-                name="caixaAccions" type="text" placeholder="Accions" />
             </mat-form-field>
             <button mat-raised-button (click)="this.engadirXardin()">
                 Gardar novo xardín

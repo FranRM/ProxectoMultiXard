@@ -17,6 +17,7 @@ import { MapaComponent } from './mapa/mapa.component';
 import { MaterialModule } from './shared/material.module';
 import {MatExpansionModule} from '@angular/material';
 import {NgbModule, NgbCarouselModule} from '@ng-bootstrap/ng-bootstrap';
+import { MinimapaComponent } from './minimapa/minimapa.component';
 
 
 
@@ -30,6 +31,7 @@ import {NgbModule, NgbCarouselModule} from '@ng-bootstrap/ng-bootstrap';
     RexistroComponent,
     LoginComponent,
     MapaComponent,
+    MinimapaComponent,
   ],
   imports: [
     BrowserModule,
