@@ -5,10 +5,11 @@ export class Factura {
     data: Date;
     pagado: boolean;
     usuario: string;
-    constructor(parte: Parte, importe: number, data: Date, pagado: boolean) {
+    constructor(parte: Parte, importe: number, data: Date, pagado: boolean, usuario: string) {
         this.parte = parte;
         this.importe = importe;
         this.data = data;
         this.pagado = pagado;
+        this.usuario = usuario;
     }
 }

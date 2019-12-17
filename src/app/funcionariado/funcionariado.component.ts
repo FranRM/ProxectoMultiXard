@@ -4,6 +4,7 @@ import { Usuario } from '../clases/Usuario';
 import { Parte } from '../clases/Parte';
 import { PeticionService } from '../servicios/peticion.service';
 import { Factura } from '../clases/Factura';
+import { FacturacionService } from '../servicios/facturacion.service';
 
 @Component({
   selector: 'app-funcionariado',
@@ -12,7 +13,11 @@ import { Factura } from '../clases/Factura';
 })
 export class FuncionariadoComponent implements OnInit {
   arrayPartes = Array<Parte>();
-  constructor(private parteService: PeticionService) { }
+  arrayFacturas = Array<Factura>();
+  verCreador = false;
+  importe;
+  parteLocal: Parte;
+  constructor(private parteService: PeticionService, private factService: FacturacionService) { }
   finalizarParte(parte: Parte) {
     parte.rematado = true;
     this.parteService.finalizarParte(parte).subscribe(
@@ -30,6 +35,12 @@ export class FuncionariadoComponent implements OnInit {
       },
       err => console.error(err)
     );
+    this.factService.pedirFacturasTodas().subscribe(
+      res => {
+        this.arrayFacturas = res;
+      },
+      err => console.error(err)
+    );
   }
   returnVisualPagado(factura: Factura) {
     if (factura.pagado === true) {
@@ -39,10 +50,31 @@ export class FuncionariadoComponent implements OnInit {
     }
   }
   returnParteFinalizado(parte: Parte) {
-    if (parte.rematado === true) {
+    const rematadoAux = parte.rematado;
+    // tslint:disable-next-line: triple-equals
+    if (rematadoAux == 'true') {
       return 'Parte finalizado.';
     } else {
       return 'Parte sen finalizar.';
     }
+  }
+  engadirFactura(parte: Parte) {
+    this.verCreador = true;
+    this.parteLocal = parte;
+  }
+  crearFactura() {
+    const data = new Date();
+    console.log(data);
+    const factura = new Factura(this.parteLocal, this.importe, data, false, this.parteLocal.usuario);
+    this.arrayFacturas.push(factura);
+    this.factService.insertarFactura(factura).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => console.error(err)
+    );
+    this.importe = null;
+    this.parteLocal = null;
+    this.verCreador = false;
   }
 }

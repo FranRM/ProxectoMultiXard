@@ -53,7 +53,17 @@ export class ClientelaComponent implements OnInit {
       res => {
         this.arrayPartes = res;
       },
-      err => {}
+      err => {
+        console.error(err);
+      }
+    );
+    this.facturas.pedirFacturasCliente(this.usuarioLocal).subscribe(
+      res => {
+        this.arrayFacturas = res;
+      },
+      err => {
+        console.error(err);
+      }
     );
   }
   }

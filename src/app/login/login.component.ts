@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
   // Como non vou a traballar coa pass dentro da app, utilizo este JSON provisional.
   logueado = false;
   erroLogeo = false;
-  // TODO - Usar Angular Material para os HTML.
   constructor(private autentificacion: AutentificacionService,
               private ac: AppComponent) { }
 

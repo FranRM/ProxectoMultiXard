@@ -1,15 +1,60 @@
 <h1>Zona de Administración:</h1>
-<div class="card text-center" *ngFor="let parte of arrayPartes">
-    <div class="card-header">
-        <h3>{{parte.usuario}}</h3>
-    </div>
-    <div class="card-body">
-        <a>{{parte.xardin.nome}}</a>
-        <app-minimapa [xardinLocal]="parte.xardin"></app-minimapa>
-        <a>{{parte.accions}}</a><br>
-        <a>{{parte.observacions}}</a>
-    </div>
-    <div class="card-footer text-muted">
-        <a>{{returnParteFinalizado(parte)}}</a>
-    </div>
+<div *ngIf="!this.verCreador">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <h3>Todos os partes.</h3>
+            </mat-panel-title>
+            <mat-panel-description></mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="card text-center" *ngFor="let parte of arrayPartes">
+            <div class="card-header">
+                <h3>{{parte.usuario}}</h3>
+            </div>
+            <div class="card-body">
+                <a>{{parte.xardin.nome}}</a>
+                <app-minimapa [xardinLocal]="parte.xardin"></app-minimapa>
+                <a>{{parte.accions}}</a><br>
+                <a>{{parte.observacions}}</a>
+            </div>
+            <div class="card-footer text-muted">
+                <a>{{returnParteFinalizado(parte)}}</a><br>
+                <button *ngIf="parte.rematado == 'true'" type="button" class="btn btn-secondary" (click)="this.engadirFactura(parte)">Crear factura.</button>
+            </div>
+        </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <h3>Todas as facturas.</h3>
+            </mat-panel-title>
+            <mat-panel-description></mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="card text-center" *ngFor="let factura of arrayFacturas">
+            <div class="card-header">
+                <h3>{{factura.parte.usuario}}</h3>
+            </div>
+            <div class="card-body">
+                <a>{{factura.data}}</a><br>
+                <a>{{factura.parte.xardin.nome}}</a><br>
+                <a>{{factura.parte.accions}}</a><br>
+                <a>{{factura.importe}}€</a>
+            </div>
+            <div class="card-footer text-muted">
+                <a>{{returnVisualPagado(factura)}}</a>
+            </div>
+        </div>
+    </mat-expansion-panel>
 </div>
+<div *ngIf="this.verCreador">
+    <mat-card class="cartaParte">
+        <mat-form-field>
+            <input size="35" matInput [(ngModel)]="this.importe" name="caixaNome" type="text" placeholder="Importe"
+                required />
+        </mat-form-field>
+        <button mat-raised-button (click)="this.crearFactura()">
+            Crear factura
+        </button>
+    </mat-card>
+</div>
+
