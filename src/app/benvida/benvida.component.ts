@@ -8,7 +8,13 @@ import { AppComponent } from '../app.component';
 })
 export class BenvidaComponent implements OnInit {
   benvida = 'Benvido a MultiXard';
+  carrouselImages: string[];
   constructor(private appComp: AppComponent) { }
+
   ngOnInit() {
+    this.carrouselImages = [
+      '../../assets/imaxe/xardin e poda.jpg',
+      '../../assets/imaxe/xardín de temporada.jpg'
+    ];
   }
 }
