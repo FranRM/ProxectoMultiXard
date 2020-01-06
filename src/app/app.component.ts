@@ -13,7 +13,6 @@ import { Router } from '@angular/router';
 })
 
 export class AppComponent {
-  // TODO - Engadir minimenú para o logout ensinando datos do user logueado.
   // TODO - Internacionalizar a app.
   constructor(
     private autenticador: AutentificacionService,

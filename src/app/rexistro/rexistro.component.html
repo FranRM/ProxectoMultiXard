@@ -1,18 +1,51 @@
-<p>Complete os campos requeridos para proceder ó rexistro.</p>
-<form >
-    <section>
-        <input [(ngModel)]="usuario.mail" name="caixaMail" type="text" placeholder="Email" />
-        <input [(ngModel)]="usuario.name" name="caixaNome" type="text" placeholder="Nome" />
-        <input [(ngModel)]="usuario.surname" name="caixaApelidos" type="text" placeholder="Apelidos" />
-        <input [(ngModel)]="usuario.username" name="caixaUsuario" type="text" placeholder="Usuario" />
-        <input [(ngModel)]="usuario.pass" name="caixaContrasinal" type="text" placeholder="Constrasinal" />
-        <select [(ngModel)]="usuario.rol" name="caixaRoles">
-            <option selected value="admin" >Administrador</option>
-            <option value="user">Usuario</option>
-            <option value="trab">Traballador</option>
-        </select>
-    </section>
-    <section>
-    </section>
-    <button (click)="rexistrar()">Rexistrarse</button>
-</form>
+<div login-background>
+        <div class="login-container">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Rexistro</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Usuario</mat-label>
+                        <input matInput [(ngModel)]="usuario.username" 
+                        name="caixaUsuario" type="text" placeholder="Usuario"
+                        required/>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Contrasinal</mat-label>
+                        <input matInput [(ngModel)]="usuario.pass" 
+                        name="caixaContrasinal" type="text" placeholder="Constrasinal"
+                        required/>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input matInput [(ngModel)]="usuario.mail" 
+                        name="caixaMail" type="text" placeholder="Email" 
+                        required/>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nome</mat-label>
+                    <input matInput [(ngModel)]="usuario.name" name="caixaNome" 
+                    type="text" placeholder="Nome" required/>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Apelidos</mat-label>
+                    <input matInput [(ngModel)]="usuario.surname" 
+                    name="caixaApelidos" type="text" placeholder="Apelidos"
+                    required/>
+                    </mat-form-field>
+                    <mat-form-field required>
+                        <mat-label>Rol</mat-label>
+                    <mat-select [(ngModel)]="usuario.rol" name="caixaRoles">
+                        <mat-option selected value="admin">Administrador</mat-option>
+                        <mat-option value="user">Usuario</mat-option>
+                        <mat-option value="trab">Traballador</mat-option>
+                    </mat-select>
+                    </mat-form-field>
+                    <button color="primary" mat-raised-button (click)="rexistrar()">
+                        Rexistrarse
+                    </button>
+                </mat-card-content>
+            </mat-card>
+        </div>
+</div>

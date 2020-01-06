@@ -1,3 +1,11 @@
 <div class="map" id="{{xardinLocal.direccion}}"></div>
-<button *ngIf="!this.modificarCoordenadas" (click)="this.actualizarCoordenadas()">Actualizar coordenadas</button>
-<button *ngIf="this.modificarCoordenadas" (click)="this.confirmarCoordenadas()">Confirmar coordenadas</button>
+<button mat-raised-button *ngIf="!this.modificarCoordenadas" 
+(click)="this.actualizarCoordenadas()" 
+matTooltip="Especifica manualmente las coordenadas." >
+    <img src="../../assets/imaxe/Actualizar.png"/>
+</button>
+<button mat-raised-button *ngIf="this.modificarCoordenadas" 
+(click)="this.confirmarCoordenadas()" 
+matTooltip="Confirma las coordenadas actuales.">
+    <img src="../../assets/imaxe/validar.png" />
+</button>

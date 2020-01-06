@@ -6,40 +6,125 @@
             </mat-panel-title>
             <mat-panel-description></mat-panel-description>
         </mat-expansion-panel-header>
-    <div *ngIf="this.verVisualizacion === true">
-        <ul>
-            <li *ngFor="let xardin of usuarioLocal.xardins">
-                <a>{{xardin.nome}}</a>
+    <div class="xardins-container" *ngIf="this.verVisualizacion === true">
+        <div class="card text-center" *ngFor="let xardin of usuarioLocal.xardins">
+            <div class="card-header">
+                <h3>{{xardin.nome}}</h3>
+            </div>
+            <div class="card-body">
                 <a>{{xardin.direccion}}</a>
-                <a>{{xardin.accions}}</a>
-                <button (click)="this.editarXardin(this.xardin)"><img src="../../assets/imaxe/tools.png"></button>
-                <button (click)="this.eliminarXardin(xardin)"><img src="../../assets/imaxe/delete.png"></button>
                 <app-mapa [xardinLocal]="xardin"></app-mapa>
-            </li>
-        </ul>
-        <button (click)="this.novoXardin()">Engadir xardín</button>
-        <button (click)="gardarDatos()">Gardar</button>
+            </div>
+            <div class="card-footer text-muted">
+                <mat-button-toggle-group>
+                    <mat-button-toggle 
+                        class="xardin-button" 
+                        color="primary" 
+                        (click)="this.editarXardin(this.xardin)"><img
+                        src="../../assets/imaxe/tools.png">
+                    </mat-button-toggle>
+                    <mat-button-toggle 
+                        class="xardin-button" 
+                        color="primary" 
+                        (click)="this.eliminarXardin(xardin)">
+                        <img src="../../assets/imaxe/delete.png">
+                    </mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+        </div>
+        <br>
+        <div class="btn-group" rule="group">
+            <button  type="button" class="btn btn-secondary" 
+            (click)="this.novoXardin()">Engadir xardín</button>
+            <button  type="button" class="btn btn-secondary" 
+            (click)="gardarDatos()">Gardar</button>
+        </div>
+        
     </div>
     <div *ngIf="this.verEdicion === true">
-        <input [(ngModel)]="this.xardinAEditar.direccion" name="caixaDireccion" type="text" placeholder="Direccion" />
-        <input [(ngModel)]="this.xardinAEditar.accions" name="caixaAccions" type="text" placeholder="Accions" />
-        <button (click)="actualizarDatos()">Actualizar datos</button>
+        <mat-card class="cartaParte">
+            <mat-form-field>
+                <input size="35" matInput [(ngModel)]="this.xardinAEditar.direccion" 
+                name="caixaDireccion" type="text" placeholder="Direccion" 
+                required/>
+            </mat-form-field>
+            <button mat-raised-button class="xardin-button" 
+            (click)="actualizarDatos()">Actualizar datos</button>
+        </mat-card>
     </div>
     <div *ngIf="this.verCreacion === true">
-        <input [(ngModel)]="this.nomeNovo" name="caixaNome" type="text" placeholder="Nome" />
-        <input [(ngModel)]="this.direccionNova" name="caixaDireccion" type="text" placeholder="Direccion" />
-        <input [(ngModel)]="this.accionNova" name="caixaAccions" type="text" placeholder="Accions" />
-        <button (click)="this.engadirXardin()">Gardar novo xardín</button>
+        <mat-card class="cartaParte">
+            <mat-form-field>
+                <input size="35" matInput [(ngModel)]="this.nomeNovo" 
+                name="caixaNome" type="text" placeholder="Nome" required/>
+            </mat-form-field>
+            <mat-form-field>
+                <input size="35" matInput [(ngModel)]="this.direccionNova"
+                name="caixaDireccion" type="text" placeholder="Direccion"
+                required/>
+            </mat-form-field>
+            <button mat-raised-button (click)="this.engadirXardin()">
+                Gardar novo xardín
+            </button>
+        </mat-card>
     </div>
     </mat-expansion-panel>
     <mat-expansion-panel>
         <mat-expansion-panel-header>
             <mat-panel-title>
-                <h3>As miñas peticións.</h3>
+                <h3>Os meus partes.</h3>
             </mat-panel-title>
             <mat-panel-description></mat-panel-description>
         </mat-expansion-panel-header>
-        Por implementar.
+        <mat-card class="cartaParte">
+            <mat-form-field required>
+                <mat-select [(ngModel)]="this.indiceBusqueda" 
+                placeholder="Elixe o xardin.">
+                    <mat-option *ngFor="let xardin of usuarioLocal.xardins" 
+                    value={{this.usuarioLocal.xardins.indexOf(xardin)}}>
+                        {{xardin.nome}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <input size="35" matInput [(ngModel)]="this.accion" 
+                placeholder="Accions a realizar:" required/>
+            </mat-form-field>
+            <mat-form-field>
+                <textarea matInput placeholder="Observacions adicionais:" 
+                [(ngModel)]="this.observacions">
+            </textarea>
+            </mat-form-field>
+            <button mat-raised-button class="xardin-button" 
+            (click)="this.engadirParte()">
+            Crear novo parte.
+        </button>
+        </mat-card>
+        <div class="card text-center" *ngFor="let parte of this.arrayPartes">
+            <mat-card>
+            <div class="card-header">
+                <h3>{{parte.xardin.nome}}</h3>
+            </div>
+            <div class="card-body">
+                <a>{{parte.accions}}</a><br>
+                <a>{{parte.observacions}}</a>
+            </div>
+            <div class="card-footer text-muted">
+                <mat-button-toggle-group>
+                    <mat-button-toggle class="xardin-button" color="primary" >
+                        <img src="../../assets/imaxe/tools.png">
+                    </mat-button-toggle>
+                    <mat-button-toggle class="xardin-button" color="primary" >
+                        <img src="../../assets/imaxe/delete.png">
+                    </mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+            </mat-card>
+        </div>
+        <br>
+        <button type="button" class="btn btn-secondary" 
+        (click)="gardarDatos()">
+        Gardar
+        </button>
     </mat-expansion-panel>
     <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -48,7 +133,20 @@
             </mat-panel-title>
             <mat-panel-description></mat-panel-description>
         </mat-expansion-panel-header>
-    Por implementar.
+    <div class="card text-center" *ngFor="let factura of this.arrayFacturas">
+        <mat-card>
+            <div class="card-header">
+                <h3>{{factura.parte.xardin.nome}}</h3>
+            </div>
+            <div class="card-body">
+                <a>{{factura.data}}</a><br>
+                <a>{{factura.parte.accions}}</a><br>
+            </div>
+            <div class="card-footer text-muted">
+                <a>{{this.returnVisualPagado(factura)}}</a>
+            </div>
+        </mat-card>
+    </div>
     </mat-expansion-panel>
 
 

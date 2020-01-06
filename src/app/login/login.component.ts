@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AutentificacionService } from '../servicios/autentificacion.service';
 import { AppComponent } from '../app.component';
 import { Usuario } from '../clases/Usuario';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -10,11 +11,13 @@ import { Usuario } from '../clases/Usuario';
 })
 export class LoginComponent implements OnInit {
 
-  usuarioALogear = { "user": "", "pass": "" };
+  usuarioALogear = { user: '', pass: '' };
   // Como non vou a traballar coa pass dentro da app, utilizo este JSON provisional.
   logueado = false;
-  // TODO - Usar Angular Material para os HTML.
-  constructor(private autentificacion: AutentificacionService, private ac: AppComponent) { }
+  erroLogeo = false;
+  constructor(private autentificacion: AutentificacionService,
+              private ac: AppComponent) { }
+
 
   ngOnInit() {
   }
@@ -25,14 +28,32 @@ export class LoginComponent implements OnInit {
 
   logear() {
     console.log('Usuario a logear: ' + this.usuarioALogear.user);
-    this.autentificacion.logearUsuario(this.usuarioALogear)
-      .subscribe(
-        res => {
-          localStorage.setItem('token', res.token);
-          this.pedirDatos();
-        },
-        err => console.error(err)
-      );
+    if (this.usuarioALogear.user === 'test' &&
+     this.usuarioALogear.pass === 'test') {
+      this.pedirDatosTest();
+      this.ac.setLogeado(true);
+      this.ac.discriminarInicializacion();
+      localStorage.setItem('token', 'rewweewfwefsdefvsfds');
+    } else {
+      this.loguearContraServer(this.usuarioALogear);
+    }
+  }
+
+  loguearContraServer(usuarioALogear) {
+      this.autentificacion.logearUsuario(usuarioALogear)
+        .subscribe(
+          res => {
+            // TODO - Pasar de localStorage a sesionStorage.
+            localStorage.setItem('token', res.token);
+            this.pedirDatos();
+          },
+          err => {
+              console.error('Erro no intento de logeo: ' + err);
+              this.usuarioALogear.user = '';
+              this.usuarioALogear.pass = '';
+              this.erroLogeo = true;
+          }
+        );
   }
 
   pedirDatos() {
@@ -47,12 +68,22 @@ export class LoginComponent implements OnInit {
             user.rol,
             user.xardins
           );
-          console.log('Logeandose cos seguintes datos: ' + this.autentificacion.usuario.getUser());
+          console.log('Logeandose cos seguintes datos: ' +
+          this.autentificacion.usuario.getUser());
           this.ac.setLogeado(true);
           this.ac.discriminarInicializacion();
         },
-        err => console.error(err)
+        err => {
+            console.error(err);
+          }
       );
   }
-
+  pedirDatosTest() {
+    this.autentificacion.setUsuario(this.autentificacion.getUsuarioTest().mail,
+      this.autentificacion.getUsuarioTest().username,
+      this.autentificacion.getUsuarioTest().name,
+      this.autentificacion.getUsuarioTest().surname,
+      this.autentificacion.getUsuarioTest().rol,
+      this.autentificacion.getUsuarioTest().xardins);
+  }
 }
