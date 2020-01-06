@@ -52,7 +52,7 @@ export class FuncionariadoComponent implements OnInit {
   returnParteFinalizado(parte: Parte) {
     const rematadoAux = parte.rematado;
     // tslint:disable-next-line: triple-equals
-    if (rematadoAux == 'true') {
+    if (rematadoAux) {
       return 'Parte finalizado.';
     } else {
       return 'Parte sen finalizar.';
